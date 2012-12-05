@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>unit3 - My Blog</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+    <div id="container">
+        <div id="inner">
+            <div id="blog_header"><h1><a href="/blog" class="a_Almond">CS 253 Blog</a></h1></div>
+            <span id="post_return_link"><a href="/">Return to homework</a></span>
+            <div id="blog_content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

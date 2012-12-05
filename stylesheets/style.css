@@ -1,0 +1,310 @@
+﻿html
+{
+   /*background: url('/images/wall2_low.jpg') no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;*/
+   background-color:darkgrey;
+}
+
+::-webkit-scrollbar
+{
+    width: 5px;
+    height: 13px;
+}
+
+#container
+{
+    width:100%;
+    height:100%
+}
+
+#inner
+{
+    display:block;
+    margin:100px auto;
+    padding-left:80px;
+    padding-top:50px;
+    background:url('/images/chalkboard_frame.png');
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-color: DarkSlateGrey;
+    height: 600px;
+    width: 1000px;
+    box-shadow: 0px 5px 8px black;
+    position: relative;
+}
+
+#inner_content_newPost
+{
+    position: relative;
+    margin-left: 192px;
+    margin-top: 36px; 
+}
+
+#inner_content_rot13
+{
+   position: relative;
+   margin-left: 197px;
+   margin-top: 43px; 
+}
+
+#inner_content_signup
+{
+    position: relative;
+    margin-top: 89px;
+    margin-left: 178px
+}
+
+#section1
+{
+    float: left;
+}
+
+#section2
+{
+    float: left;
+    margin-left: 42px;
+}
+
+#signup_submit
+{
+    position: absolute;
+    clear: both;
+    margin-top: 118px;
+}
+
+#signup_return_link
+{
+    position: absolute;
+    font-size: small; 
+    clear: both;
+    margin-top: 139px;
+    font-family: "DK Crayon Crumble";
+}
+
+h1
+{
+    font-family:"Drawing Guides";
+    color:Azure ;
+    text-decoration: underline;
+}
+
+#menu_header
+{
+    font-family:"Drawing Guides";
+    color:Azure ;
+    text-decoration: underline;
+}
+
+#blog_header
+{
+    position: relative;
+    margin-left: 364px;
+    margin-top: -16px;S
+}
+
+.post + .post
+{
+   margin-left: 183px;
+   margin-top: 37px;
+   width: 510px;
+}
+
+#post_return_link
+{
+   font-family: "DK Crayon Crumble";
+   font-size: small;
+   margin-left: 132px;
+   margin-top: 460px;
+   position: absolute;
+}
+
+.post-title
+{
+    font-weight: bold;
+    font-size: 25px;
+    float: left;
+}
+
+.post-date
+{
+    font-weight: bold;
+    font-size: 12px;
+    float: right;
+    margin-top: 17px;
+}
+
+.post-content
+{
+    clear:  both;
+    padding: 19px 35px 15px 45px;
+}
+
+#new-blog_content
+{
+    border-color:white;
+    background-color:transparent;
+    font-family:"DK Crayon Crumble";
+    color:Azure ;
+    height: 195px;
+    width: 531px;
+}
+
+#horizontal_rule
+{
+    clear: both;
+    border-top: 2px solid white;
+}
+
+p
+{
+    font-family:"DK Crayon Crumble";
+    color:Azure;
+}
+
+.a_Almond 
+{
+    color:BlanchedAlmond;
+}
+
+a:visited
+{
+    color:BlanchedAlmond;
+}
+
+label
+{
+    font-family:"DK Crayon Crumble";
+    color:Azure ;
+}
+
+input
+{
+    border-color:white;
+    background-color:transparent;
+    font-family:"DK Crayon Crumble";
+    color:Azure ;
+}
+
+input[type=submit]
+{
+    font-size:large;
+}
+
+.ASCII
+{
+    width: 400px;
+    height: 200px;
+    font-size: 17px;
+    font-family: monospace;
+    background-color:transparent
+}
+
+#new_post_header
+{
+   position: relative;
+   margin-left: 142px;
+   margin-bottom: 40px; 
+}
+
+#rot13_header
+{
+   position: relative;
+   margin-left: 58px;
+   margin-bottom: 40px; 
+}
+
+#blog_content
+{
+    width: 530px;
+    height: 420px;
+    background-color: transparent;
+    color:Azure ;
+    margin-left: 130px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 17px 53px 8px 54px;
+    border: 2px solid white;
+
+}
+
+#subject_input
+{
+    width: 530px;
+}
+
+#art_container
+{
+    height: 491px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 466px;
+    margin-top: -31px;
+*/
+}
+
+#art_title
+{
+    color: white;
+    margin-left: 104px;
+    margin-top: -39px;
+    padding-bottom: 20px;
+    text-decoration: underline;
+}
+
+.art + .art
+{
+    margin-top: 20px;
+}
+
+.art-title
+{
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.art-body
+{
+    margin: 0;
+    font-size: 15px;
+    color: white;
+}
+
+#page_navigate
+{
+    color: white;
+    position: absolute;
+    bottom: 35px;
+    left: 35px;
+    position: absolute;
+    bottom: 35px;
+    left: 35px;
+    font-family:"DK Crayon Crumble";
+}
+
+#coursework
+{
+    background:url('/images/swap-icon.png');
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
+}
+
+#label
+{
+    position: absolute;
+    bottom: 35px;
+    right: 100px;
+}
+
+.error
+{
+    color: red;
+}

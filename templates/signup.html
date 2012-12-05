@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Unit2 - Signup</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+    <div id="container">
+        <div id="inner">
+            <div id="inner_content_signup">
+                <h1>Sign Up</h1>
+                <br />
+                    <form method="post">
+                        <div id="section1">
+                        <label>Username:
+                            <input style="margin-left: 50px" type="text" name="username" value="{{username}}" /><br><span style=" margin-left:2px; color:red" id="error_user">{{error_user}}</span>
+                        </label>
+                        <br />
+                        <br />
+                        <label>Password:
+                            <input style="margin-left: 52px" type="password" name="password" value="" /><br><span style=" margin-left:2px; color:red" id="error_pass">{{error_pass}}</span>
+                        </label>
+                        </div>
+
+                        <div id="section2">
+                        <label>Verify Password:
+                            <input style="margin-left: 14px" type="password" name="verify" value="" /><br><span style=" margin-left:2px; color:red" id="error_verify">{{error_verify}}</span>
+                        </label>
+                         <br />
+                        <br />
+                        <label>Email (optional):
+                            <input style="margin-left: 15px" type="text" name="email" value="{{email}}" /><br><span style=" margin-left:2px; color:red" id="error_email">{{error_email}}</span>
+                        </label>
+                        </div>
+                        <div id="signup_submit"><input type="submit" value="submit" /></div>
+         
+                    </form>
+                    <br />
+                    <br />
+                    <div id="signup_return_link"><a href="/" class="a_Almond">Return to homepage</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

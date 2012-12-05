@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>unit3 - My Blog</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+    <div id="container">
+        <div id="inner">
+            <div id="inner_content_newPost">
+                <div id="new_post_header"><h1>Create New Post</h1></div>
+
+                <form method="post">
+                	<label>
+                		<div>Subject</div>
+                		<input type="text" id="subject_input" name="subject" value="{{subject}}">
+                	</label>
+                    <br>
+                    <br>
+                	<label>
+                		<div>Content</div>
+                		<textarea id="new-blog_content" name="content">{{content}}</textarea>
+                	</label>
+                    <br>
+                    <br>
+                    <input type="submit" value="submit">
+                    <div class="error">{{error}}</div>
+                </form>
+                <p style="font-size:small"><a href="/">Return to homework</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

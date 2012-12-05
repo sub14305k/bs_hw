@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>unit3 - ASCIIChan</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+    <div id="container">
+        <div id="inner">
+                <div style="float:left">
+                    <h1>ASCII fun!</h1>
+
+                    <form method="post">
+                    	<label>
+                    		<div>Title</div>
+                    		<input type="text" name="title" value = "{{title}}">
+                    	</label>
+                    	<label>
+                    		<div>Art</div>
+                    		<textarea class="ASCII" name="art">{{art}}</textarea>
+                    	</label>
+                        <br>
+                        <br>
+                        <input type="submit" value="submit">
+                        <div class="error">{{error}}</div>
+                    </form>
+                    <p style="font-size:small"><a href="/course_work" class="a_Almond">Return to coursework</a></p>
+                </div>
+                <div style="float: right; width: 500px; border-left: 2px dashed white; padding-left: 30px; height: 460px; margin-top: 64px">
+                <h2 id="art_title">•Submitted ASCII Art•</h2>
+                <div id="art_container">
+                    {% for art in arts %}
+                    <div class="art">
+                    <div class="art-title">{{art.title}}</div>
+                    <pre class="art-body">{{art.art}}</pre>
+                    </div> 
+                     {% endfor %}  
+                </div>
+                </div>
+        </div>
+</body>
+</html>

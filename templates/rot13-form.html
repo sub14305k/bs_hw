@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>unit2 - rot13</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+    <div id="container">
+        <div id="inner">
+            <div id="inner_content_rot13">
+                <div id="rot13_header"><h1>Enter some text to ROT13:</h1></div>
+        
+                <form method="post">
+                    <textarea style="width: 500px; height: 200px; border-color:white; background-color:transparent; font-family:"DK Crayon Crumble"; color:Azure ;" name="text">{{user_input}}</textarea>
+                    <br />
+                    <div style = "color: red">{{error}}</div>
+                    <br />
+                    <input type="submit" value="submit"/>
+                </form>
+                <br />
+                <br />
+                <p style="font-size:small"><a href="/" class="a_Almond">Return to homepage</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
