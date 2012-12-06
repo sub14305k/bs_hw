@@ -110,7 +110,7 @@ h1
 {
     font-family:'Merienda', cursive;
     color:Azure ;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 #menu_header
@@ -278,7 +278,7 @@ input[type=submit]
     margin-left: 104px;
     margin-top: -39px;
     padding-bottom: 20px;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 .art + .art
