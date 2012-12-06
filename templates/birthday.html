@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>unit2 - Birthday Form</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Margarine' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merienda:700,400' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div id="container">
+        <div id="inner">
+            <div id="inner_content_birthday">
+                    <h1>What is your birthday?</h1>
+
+                    <form method="post">
+                    	<label>
+                    		<div>Month:</div>
+                    		<select name="month">
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                    	</label>
+                        <label>
+                            <div>Day:</div>
+                            <select name="day">
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                            </select>
+                        </label>
+                        <label>
+                            <div>Year:</div>
+                            <input  id="year_input" type="number" name="year" value = "{{year}}">
+                        </label>
+                        <br>
+                        <br>
+                        <input type="submit" value="submit">
+                        <div class="error" id="birthday_year">{{error}}</div>
+                    </form>
+                    <div id="submitted_date" class="text">{{submitted_date}}</div>
+                    <div id="valid_birthday">{{valid}}</div><div id="invalid_birthday">{{invalid}}</div>
+                    <div id="invalid_birthday_message">{{message}}</div>
+
+                    <div id="birthday_return_link" style="font-size:small"><a href="/course_work" class="a_Almond">Return to coursework</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -57,6 +57,28 @@
     margin-left: 178px
 }
 
+#inner_content_birthday
+{
+    margin-left: 276px;
+    margin-top: 55px;
+}
+
+#birthday_year
+{
+    margin-left: 49px;
+    margin-top: -67px;
+}
+
+#birthday_return_link
+{
+    margin-top: 38px;
+}
+
+#submitted_date
+{
+    margin-top: 80px;
+}
+
 #section1
 {
     float: left;
@@ -81,19 +103,19 @@
     font-size: small; 
     clear: both;
     margin-top: 139px;
-    font-family: "DK Crayon Crumble";
+    font-family: 'Margarine', cursive;
 }
 
 h1
 {
-    font-family:"Drawing Guides";
+    font-family:'Merienda', cursive;
     color:Azure ;
     text-decoration: underline;
 }
 
 #menu_header
 {
-    font-family:"Drawing Guides";
+    font-family:'Merienda', cursive;
     color:Azure ;
     text-decoration: underline;
 }
@@ -114,7 +136,7 @@ h1
 
 #post_return_link
 {
-   font-family: "DK Crayon Crumble";
+   font-family: 'Margarine', cursive;
    font-size: small;
    margin-left: 132px;
    margin-top: 460px;
@@ -146,7 +168,7 @@ h1
 {
     border-color:white;
     background-color:transparent;
-    font-family:"DK Crayon Crumble";
+    font-family:'Margarine', cursive;
     color:Azure ;
     height: 195px;
     width: 531px;
@@ -158,9 +180,9 @@ h1
     border-top: 2px solid white;
 }
 
-p
+p, .text
 {
-    font-family:"DK Crayon Crumble";
+    font-family:'Margarine', cursive;
     color:Azure;
 }
 
@@ -176,16 +198,21 @@ a:visited
 
 label
 {
-    font-family:"DK Crayon Crumble";
+    font-family:'Margarine', cursive;
     color:Azure ;
 }
 
-input
+input, select
 {
     border-color:white;
     background-color:transparent;
-    font-family:"DK Crayon Crumble";
+    font-family:'Margarine', cursive;
     color:Azure ;
+}
+
+#year_input
+{
+    width: 38px;
 }
 
 input[type=submit]
@@ -282,7 +309,7 @@ input[type=submit]
     position: absolute;
     bottom: 35px;
     left: 35px;
-    font-family:"DK Crayon Crumble";
+    font-family:'Margarine', cursive;
 }
 
 #coursework
