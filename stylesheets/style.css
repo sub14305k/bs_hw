@@ -66,12 +66,35 @@
 #birthday_year
 {
     margin-left: 49px;
-    margin-top: -67px;
+    margin-top: -75px;
 }
 
 #birthday_return_link
 {
     margin-top: 38px;
+    margin-left: 69px;
+}
+
+#valid_birthday
+{
+    color: lightgreen;
+    font-family: 'Keania One',cursive;
+    font-size: 52px;
+    margin-left: 62px;
+}
+
+#invalid_birthday
+{
+    color: red;
+    font-family: 'Keania One',cursive;
+    font-size: 52px;
+    margin-left: 49px;    
+}
+
+#invalid_birthday_message
+{
+    color: Azure;
+    margin-left: -72px;
 }
 
 #submitted_date
@@ -225,6 +248,7 @@ input[type=submit]
     width: 400px;
     height: 200px;
     font-size: 17px;
+    color: Azure;
     font-family: monospace;
     background-color:transparent
 }
@@ -278,6 +302,7 @@ input[type=submit]
     margin-left: 104px;
     margin-top: -39px;
     padding-bottom: 20px;
+    font-family:'Merienda', cursive;
     /*text-decoration: underline;*/
 }
 
@@ -291,6 +316,7 @@ input[type=submit]
     font-weight: bold;
     font-size: 20px;
     color: white;
+    font-family:'Margarine', cursive;
 }
 
 .art-body

@@ -9,15 +9,46 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
-- url: /stylesheets
-  static_dir: stylesheets
-
 - url: /images
   static_dir: images
   expiration: "99d"
 
-- url: .*
+- url: /stylesheets
+  static_dir: stylesheets
+
+- url: /
   script: main.app
+
+- url: /course_work
+  script: main.app
+
+- url: /unit1/helloudacity
+  script: main.app
+
+
+- url: /course_work/unit2/birthday
+  script: birthday.app
+
+- url: /course_work/unit3/ASCIIChan
+  script: aschii.app
+
+- url: /unit2/rot13
+  script: ROT13.app
+
+- url: /unit2/signup
+  script: signup.app
+
+- url: /unit2/welcome
+  script: signup.app
+
+- url: /blog/?
+  script: blog.app
+
+- url: /blog/newpost
+  script: blog.app
+
+- url: /blog/([0-9]+)
+  script: blog.app
 
 libraries:
 - name: webapp2
