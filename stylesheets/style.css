@@ -214,9 +214,14 @@ p, .text
     color:BlanchedAlmond;
 }
 
-a:visited
+a:visited,a:link,a:hover,a:active
 {
-    color:BlanchedAlmond;
+    color:Azure;
+}
+
+#post_link_individual
+{
+    text-decoration: none;
 }
 
 label

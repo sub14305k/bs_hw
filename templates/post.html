@@ -12,7 +12,7 @@
     <div class = "post">
         <div class = "post-heading">
             <div class = "post-title">
-                {{p.subject}}
+                <a id="post_link_individual" href="/blog/{{p.key().id()}}">{{p.subject}}</a>
             </div>
             <div class = "post-date">
                 {{p.created.strftime("%b %d, %y")}}
@@ -20,7 +20,7 @@
         </div>
     <div id="horizontal_rule" />
         <div class = "post-content">
-            {{p._render_text | safe}}
+            <a id="post_link_individual" href="/blog/{{p.key().id()}}">{{p._render_text | safe}}</a>
         </div>
     </div>
 </body>
