@@ -199,7 +199,7 @@ def valid_pw(name, pw, h):
 
 
 h = make_pw_hash('peter', 'boo')
-print valid_pw('peter', 'boo', h)
+# print valid_pw('peter', 'boo', h)
 print h
 
 

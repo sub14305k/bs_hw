@@ -54,7 +54,7 @@
 {
     position: relative;
     margin-top: 89px;
-    margin-left: 178px
+    margin-left: 319px
 }
 
 #inner_content_birthday
@@ -115,9 +115,10 @@
 
 #signup_submit
 {
-    position: absolute;
     clear: both;
-    margin-top: 118px;
+    margin-left: 194px;
+    margin-top: 40px;
+    position: absolute;
 }
 
 #signup_return_link
@@ -125,7 +126,7 @@
     position: absolute;
     font-size: small; 
     clear: both;
-    margin-top: 139px;
+    margin-top: 14px;
     font-family: 'Margarine', cursive;
 }
 

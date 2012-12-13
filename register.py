@@ -1,6 +1,23 @@
 import webapp2
 import re
 from main import BaseHandler
+import random
+import string
+import hashlib
+
+def make_salt():
+    make_characters = string.letters
+    return ''.join(random.sample(make_characters,5))
+
+def make_pw_hash(name, pw, salt = None):
+    if not salt:
+        salt = make_salt()
+    h = hashlib.sha256(name + pw + salt).hexdigest()
+    return '%s,%s' % (h,salt)
+
+def valid_pw(name, pw, h):
+    salt = h.split(',')[1]
+    return h == make_pw_hash(name, pw, salt)
 
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
 PASS_RE = re.compile(r"^.{3,20}$")
@@ -52,10 +69,11 @@ class Register(BaseHandler):
         if has_error != False:
             self.render("register.html",error_user = user_error ,error_pass = pass_error,error_verify = verify_error,error_email = email_error,username = user_input,email = email_input)
         else:
-
-          user_input = str(user_input)
-          self.render('welcome.html', username = user_input)
-          self.response.headers.add_header('Set-Cookie', 'user_name=%s' % user_input)
+            hash_pass = make_pw_hash(user_input,password_input)
+            user_input = str(user_input)
+            self.render('welcome.html', username = user_input)
+            self.response.headers.add_header('Set-Cookie', 'user_name=%s' % user_input)
+            self.response.headers.add_header('Set-Cookie', 'user_pw=%s' % hash_pass)
 
 class Welcome(BaseHandler):
        def get(self):
