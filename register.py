@@ -4,6 +4,8 @@ from main import BaseHandler
 import random
 import string
 import hashlib
+from database import Users
+from google.appengine.ext import db
 
 def make_salt():
     make_characters = string.letters
@@ -71,9 +73,21 @@ class Register(BaseHandler):
         else:
             hash_pass = make_pw_hash(user_input,password_input)
             user_input = str(user_input)
-            self.render('welcome.html', username = user_input)
-            self.response.headers.add_header('Set-Cookie', 'user_name=%s' % user_input)
-            self.response.headers.add_header('Set-Cookie', 'user_pw=%s' % hash_pass)
+            data = db.GqlQuery("select * from Users order by user_name")
+            for name in data:
+                user = name.user_name
+                if user == user_input:
+                    user_taken = True
+            if user_taken:
+                user_error = 'Sorry, the username you selected is already taken'
+                self.render('register.html', error_user = user_error, email = email_input)
+            else:
+                new = Users(user_name = user_input, user_pass = hash_pass, user_email = email_input)
+                new.put()
+                            
+                self.render('welcome.html', username = user_input)
+                self.response.headers.add_header('Set-Cookie', 'user_name=%s' % user_input)
+                self.response.headers.add_header('Set-Cookie', 'user_pw=%s' % hash_pass)
 
 class Welcome(BaseHandler):
        def get(self):

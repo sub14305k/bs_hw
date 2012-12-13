@@ -179,30 +179,35 @@
 
 # print cookie
 
-import random
-import string
-import hashlib
-
-def make_salt():
-    make_characters = string.letters
-    return ''.join(random.sample(make_characters,5))
-
-def make_pw_hash(name, pw, salt = None):
-    if not salt:
-        salt = make_salt()
-    h = hashlib.sha256(name + pw + salt).hexdigest()
-    return '%s,%s' % (h,salt)
-
-def valid_pw(name, pw, h):
-    salt = h.split(',')[1]
-    return h == make_pw_hash(name, pw, salt)
-
-
-h = make_pw_hash('peter', 'boo')
-# print valid_pw('peter', 'boo', h)
-print h
-
-
+#import random
+#import string
+#import hashlib
+#
+#def make_salt():
+#    make_characters = string.letters
+#    return ''.join(random.sample(make_characters,5))
+#
+#def make_pw_hash(name, pw, salt = None):
+#    if not salt:
+#        salt = make_salt()
+#    h = hashlib.sha256(name + pw + salt).hexdigest()
+#    return '%s,%s' % (h,salt)
+#
+#def valid_pw(name, pw, h):
+#    salt = h.split(',')[1]
+#    return h == make_pw_hash(name, pw, salt)
+#
+#
+#h = make_pw_hash('peter', 'boo')
+## print valid_pw('peter', 'boo', h)
+#print h
+#from google.appengine.ext import db
+#from database import Users
+#
+#data = Users(user_name = 'test', user_pass = 'test1234')
+#data.put()
+#d = db.GqlQuery("SELECT * FROM Users")
+#print d.user_name
     
 
 
