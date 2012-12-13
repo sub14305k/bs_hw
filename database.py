@@ -14,3 +14,8 @@ class Art(db.Model):
         title = db.StringProperty(required = True)
         art = db.TextProperty(required = True)
         created = db.DateTimeProperty(auto_now_add = True)
+
+class Users(db.model):
+		user_name = db.StringProperty(required = True)
+		user_pass = db.StringProperty(required = True)
+		created_on = db.DateTimeProperty(auto_now_add = True)

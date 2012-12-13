@@ -25,7 +25,6 @@ handlers:
 - url: /unit1/helloudacity
   script: main.app
 
-
 - url: /course_work/unit2/birthday
   script: birthday.app
 
@@ -35,7 +34,7 @@ handlers:
 - url: /unit2/rot13
   script: ROT13.app
 
-- url: /unit2/signup
+- url: /homework/unit2/signup
   script: signup.app
 
 - url: /unit2/welcome
@@ -51,7 +50,13 @@ handlers:
   script: blog.app
 
 - url: /course_work/unit4/pagecounter
-  script: unit4.app
+  script: pagecounter.app
+
+- url: /unit4/register
+  script: register.app
+
+- url: /unit4/welcome
+  script: register.app
 
 libraries:
 - name: webapp2

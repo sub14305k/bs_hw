@@ -15,10 +15,10 @@ def valid_password(password):
 def valid_email(email):
     return not email or EMAIL_RE.match(email)
 
-class Signup(BaseHandler):
+class Register(BaseHandler):
     
     def get(self):
-        self.render("signup.html")
+        self.render("register.html")
     
     def post(self):
         has_error = False
@@ -47,9 +47,9 @@ class Signup(BaseHandler):
             email_error = 'Invalid email, please try again.'
             has_error = True
         if has_error != False:
-            self.render("signup.html",error_user = user_error ,error_pass = pass_error,error_verify = verify_error,error_email = email_error,username = user_input,email = email_input)
+            self.render("register.html",error_user = user_error ,error_pass = pass_error,error_verify = verify_error,error_email = email_error,username = user_input,email = email_input)
         else:
-          self.redirect('/unit2/welcome?username=' + user_input)
+          self.redirect('/unit4/welcome?username=' + user_input)
 
 class Welcome(BaseHandler):
        def get(self):
@@ -57,8 +57,8 @@ class Welcome(BaseHandler):
         if valid_username(username):
             self.render('welcome.html', username = username)
         else:
-            self.redirect('/unit2/signup')
+            self.redirect('/unit4/register')
 
-app = webapp2.WSGIApplication([('/homework/unit2/signup',Signup),
-                               ('/unit2/welcome', Welcome)
+app = webapp2.WSGIApplication([('/unit4/register',Register),
+                               ('/unit4/welcome', Welcome)
 ], debug=True)
