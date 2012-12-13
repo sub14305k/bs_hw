@@ -73,14 +73,25 @@ class Register(BaseHandler):
         else:
             hash_pass = make_pw_hash(user_input,password_input)
             user_input = str(user_input)
+            user_taken = False
+            email_taken = False
             data = db.GqlQuery("select * from Users order by user_name")
-            for name in data:
-                user = name.user_name
+            for entry in data:
+                user = entry.user_name
+                email= entry.user_email
                 if user == user_input:
                     user_taken = True
-            if user_taken:
+                if email == email_input:
+                    email_taken = True
+            if user_taken or email_taken:
                 user_error = 'Sorry, the username you selected is already taken'
-                self.render('register.html', error_user = user_error, email = email_input)
+                email_error= 'Sorry, this email is already registered'
+                if user_taken:
+                    self.render('register.html', error_user = user_error, email = email_input)
+                if user_taken and email_taken:
+                    self.render('register.html', error_user = user_error, error_email = email_error)
+                else: 
+                    self.render('register.html', error_email = email_error, username = user_input)
             else:
                 new = Users(user_name = user_input, user_pass = hash_pass, user_email = email_input)
                 new.put()
