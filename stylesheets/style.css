@@ -136,6 +136,25 @@ h1
     /*text-decoration: underline;*/
 }
 
+#page_counter
+{
+    color: Azure; 
+    font-size: 108px;
+    margin-left: 373px;
+    text-align: center;
+    width: 143px;
+}
+
+#visit_font
+{
+   font-family: 'Rye',cursive; 
+}
+
+#counter_return
+{
+    margin-left: 386px;
+}
+
 #menu_header
 {
     font-family:'Merienda', cursive;

@@ -28,7 +28,7 @@ class Index(BaseHandler):
     def get(self):
         self.render("index.html")
 
-class coursework(BaseHandler):
+class Coursework(BaseHandler):
     def get(self):
         self.render("course_work.html")
 
@@ -37,6 +37,6 @@ class HelloUdacity(BaseHandler):
         self.render("hello.html")
          
 app = webapp2.WSGIApplication([('/', Index),
-                               ('/course_work', coursework),
+                               ('/course_work', Coursework),
                                ('/unit1/helloudacity', HelloUdacity)
 ], debug=True)

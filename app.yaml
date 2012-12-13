@@ -50,6 +50,9 @@ handlers:
 - url: /blog/([0-9]+)
   script: blog.app
 
+- url: /course_work/unit4/pagecounter
+  script: unit4.app
+
 libraries:
 - name: webapp2
   version: "2.5.1"
