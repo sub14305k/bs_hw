@@ -34,5 +34,9 @@ class Page_Counter(BaseHandler):
 		self.response.headers.add_header('Set-Cookie', 'visits=%s' % new_cookie_val) 
 		self.render("page_visits.html", visits = visits)
 
+class Registration(BaseHandler):
+	def get(self):
+		self.render("registration.html")
+
 app = webapp2.WSGIApplication([('/course_work/unit4/pagecounter', Page_Counter)
 ], debug=True)
