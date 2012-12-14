@@ -52,7 +52,7 @@ handlers:
 - url: /course_work/unit4/pagecounter
   script: pagecounter.app
 
-- url: /unit4/register
+- url: /unit4/signup
   script: register.app
 
 - url: /unit4/welcome

@@ -39,7 +39,7 @@ class Register(BaseHandler):
     def get(self):
         user_cookie = self.request.cookies.get("user_name")
         if user_cookie:
-            self.render("welcome.html", username = user_cookie)
+            self.render("/unit4/welcome")
         else:
             self.render("register.html")
     def post(self):
@@ -81,33 +81,34 @@ class Register(BaseHandler):
                 email= entry.user_email
                 if user == user_input:
                     user_taken = True
-                if email == email_input:
+                if email == email_input and email != '':
                     email_taken = True
             if user_taken or email_taken:
                 user_error = 'Sorry, the username you selected is already taken'
                 email_error= 'Sorry, this email is already registered'
-                if user_taken:
-                    self.render('register.html', error_user = user_error, email = email_input)
                 if user_taken and email_taken:
                     self.render('register.html', error_user = user_error, error_email = email_error)
+                if user_taken:
+                    self.render('register.html', error_user = user_error, email = email_input)
                 else: 
                     self.render('register.html', error_email = email_error, username = user_input)
             else:
                 new = Users(user_name = user_input, user_pass = hash_pass, user_email = email_input)
                 new.put()
                             
-                self.render('welcome.html', username = user_input)
-                self.response.headers.add_header('Set-Cookie', 'user_name=%s' % user_input)
-                self.response.headers.add_header('Set-Cookie', 'user_pw=%s' % hash_pass)
+                self.redirect('/unit4/welcome')
+                self.response.headers.add_header('Set-Cookie', 'user_name=%s|%s' % (user_input,hash_pass))
+        
 
 class Welcome(BaseHandler):
        def get(self):
-        username = self.request.get('username')
+        username = self.request.cookie.get('user_name')
+        username = username.split('|')[0]
         if valid_username(username):
             self.render('welcome.html', username = username)
         else:
-            self.redirect('/unit4/register')
+            self.redirect('/unit4/signup')
 
-app = webapp2.WSGIApplication([('/unit4/register',Register),
+app = webapp2.WSGIApplication([('/unit4/signup',Register),
                                ('/unit4/welcome', Welcome)
 ], debug=True)
