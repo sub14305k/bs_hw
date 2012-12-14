@@ -15,8 +15,11 @@ handlers:
 
 - url: /stylesheets
   static_dir: stylesheets
+  
+- url: /unit4/login
+  script: login.app
 
-- url: /
+- url: /homework
   script: main.app
 
 - url: /course_work
@@ -57,6 +60,9 @@ handlers:
 
 - url: /unit4/welcome
   script: register.app
+  
+- url: /unit4/logout
+  script: logout.app
 
 libraries:
 - name: webapp2

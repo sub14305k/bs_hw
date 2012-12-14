@@ -24,7 +24,7 @@ def render(self):
     self._render_text = self.content.replace('\n', '<br>')
     return render_str("post.html", p = self)
 
-class Index(BaseHandler):
+class Homework(BaseHandler):
     def get(self):
         self.render("index.html")
 
@@ -36,7 +36,7 @@ class HelloUdacity(BaseHandler):
     def get(self):
         self.render("hello.html")
          
-app = webapp2.WSGIApplication([('/', Index),
+app = webapp2.WSGIApplication([('/homework', Homework),
                                ('/course_work', Coursework),
                                ('/unit1/helloudacity', HelloUdacity)
 ], debug=True)
