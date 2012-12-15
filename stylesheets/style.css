@@ -20,6 +20,12 @@
     height:100%
 }
 
+#signup_link
+{
+	margin-left: 125px;
+    margin-top: 50px;
+}
+
 #inner
 {
     display:block;

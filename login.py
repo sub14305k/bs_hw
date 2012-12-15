@@ -56,5 +56,5 @@ class Login(BaseHandler):
 #        
         
 
-app = webapp2.WSGIApplication([('/unit4/login',Login)
+app = webapp2.WSGIApplication([('/',Login)
 ], debug=True)

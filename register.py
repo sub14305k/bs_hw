@@ -38,7 +38,7 @@ class Register(BaseHandler):
     
     def get(self):
         user_cookie = self.request.cookies.get("user_id")
-        if user_cookie != "":
+        if user_cookie and user_cookie != "":
             self.redirect("/unit4/welcome")
         else:
             self.render("register.html")

@@ -1,6 +1,8 @@
 import webapp2
 import os
 import jinja2
+from database import Users
+#from google.appengine.ext import db
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -26,7 +28,14 @@ def render(self):
 
 class Homework(BaseHandler):
     def get(self):
-        self.render("index.html")
+        user_cookie = self.request.cookies.get('user_id')
+        if user_cookie:
+            user_id = int(user_cookie.split('|')[0])
+            _user_db_data = Users.get_by_id(user_id)
+            username = _user_db_data.user_name
+            self.render("index.html")
+        else:
+            self.redirect('/')
 
 class Coursework(BaseHandler):
     def get(self):
