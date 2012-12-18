@@ -3,7 +3,7 @@ from main import BaseHandler
 # import hashlib
 import hmac
 
-SECRET = 'supersecret'
+SECRET = 'nl;ajkdfnHJKsHJh56dafdfasfsd'
 
 def hash_str(s):
     return hmac.new(SECRET, s).hexdigest()
@@ -19,20 +19,20 @@ def check_secure_val(h):
         return None
 
 class Page_Counter(BaseHandler):
-	def get(self):
-		visits = 0
-		visits_cookie_val = self.request.cookies.get('visits')
-		if visits_cookie_val:
-			cookie_valid = check_secure_val(visits_cookie_val)
-			if cookie_valid:
-				visits = int(cookie_valid)
-		
-		visits += 1
+    def get(self):
+        visits = 0
+        visits_cookie_val = self.request.cookies.get('visits')
+        if visits_cookie_val:
+            cookie_valid = check_secure_val(visits_cookie_val)
+            if cookie_valid:
+                visits = int(cookie_valid)
 
-		new_cookie_val = make_secure_val(str(visits))
+        visits += 1
 
-		self.response.headers.add_header('Set-Cookie', 'visits=%s' % new_cookie_val) 
-		self.render("page_visits.html", visits = visits)
+        new_cookie_val = make_secure_val(str(visits))
+
+        self.response.headers.add_header('Set-Cookie', 'visits=%s' % new_cookie_val) 
+        self.render("page_visits.html", visits = visits)
 
 app = webapp2.WSGIApplication([('/course_work/unit4/pagecounter', Page_Counter)
 ], debug=True)
