@@ -1,5 +1,5 @@
 application: bs-udacity-cs253
-version: 1
+version: 2
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -16,7 +16,7 @@ handlers:
 - url: /stylesheets
   static_dir: stylesheets
   
-- url: /unit4/login
+- url: /
   script: login.app
 
 - url: /homework

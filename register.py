@@ -37,25 +37,9 @@ def valid_email(email):
 class Register(BaseHandler):
     
     def get(self):
-<<<<<<< HEAD
-=======
-
->>>>>>> update
         user_cookie = self.request.cookies.get("user_id")
-        if user_cookie != "":
-            self.redirect("/unit4/welcome")
-<<<<<<< HEAD
-=======
-
-        user_cookie = self.request.cookies.get('user_id')
         if user_cookie and user_cookie != "":
-            user_id = int(user_cookie.split('|')[0])
-            _user_db_data = Users.get_by_id(user_id)
-            username = _user_db_data.user_name
-            message = "You have already registered!"
-            self.render("welcome.html", message = message, username = username)
-
->>>>>>> update
+            self.redirect("/unit4/welcome")
         else:
             self.render("register.html")
     def post(self):

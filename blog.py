@@ -1,12 +1,13 @@
 import webapp2
+from main import BaseHandler
 from database import Blog_db
-from main import render_str,BaseHandler
 from google.appengine.ext import db
 
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)
 
 class Blog_Page(BaseHandler):
+        
     def get(self):
         posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
         self.render("blog.html", posts = posts)
