@@ -15,11 +15,14 @@ handlers:
 
 - url: /stylesheets
   static_dir: stylesheets
+<<<<<<< HEAD
   
 - url: /
   script: login.app
+=======
+>>>>>>> parent of 495a4cc... Finished 2/3 of unit 4 HW
 
-- url: /homework
+- url: /
   script: main.app
 
 - url: /course_work
@@ -60,9 +63,6 @@ handlers:
 
 - url: /unit4/welcome
   script: register.app
-  
-- url: /unit4/logout
-  script: logout.app
 
 libraries:
 - name: webapp2

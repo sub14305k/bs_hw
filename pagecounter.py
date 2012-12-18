@@ -3,7 +3,7 @@ from main import BaseHandler
 # import hashlib
 import hmac
 
-SECRET = 'nl;ajkdfnHJKsHJh56dafdfasfsd'
+SECRET = 'supersecret'
 
 def hash_str(s):
     return hmac.new(SECRET, s).hexdigest()

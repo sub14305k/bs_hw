@@ -26,7 +26,7 @@ def render(self):
     self._render_text = self.content.replace('\n', '<br>')
     return render_str("post.html", p = self)
 
-class Homework(BaseHandler):
+class Index(BaseHandler):
     def get(self):
         user_cookie = self.request.cookies.get('user_id')
         if user_cookie:
@@ -45,7 +45,7 @@ class HelloUdacity(BaseHandler):
     def get(self):
         self.render("hello.html")
          
-app = webapp2.WSGIApplication([('/homework', Homework),
+app = webapp2.WSGIApplication([('/', Index),
                                ('/course_work', Coursework),
                                ('/unit1/helloudacity', HelloUdacity)
 ], debug=True)
