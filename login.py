@@ -42,7 +42,7 @@ class Login(BaseHandler):
                     user_id = str(entry.key().id())
                     user_pass_string = str(make_pw_hash(username,pw))
                     self.response.headers.add_header('Set-Cookie', 'user_id=%s|%s;Path=/' % (user_id,user_pass_string))
-                    self.redirect('/unit4/welcome')
+                    self.redirect('/homework')
                 else:
                      error = 'Sorry Invalid Login, Please try again.'
                      has_error = True

@@ -29,17 +29,24 @@ def render(self):
 class Homework(BaseHandler):
     def get(self):
         user_cookie = self.request.cookies.get('user_id')
-        if user_cookie:
+        if user_cookie and user_cookie != '':
             user_id = int(user_cookie.split('|')[0])
             _user_db_data = Users.get_by_id(user_id)
             username = _user_db_data.user_name
-            self.render("index.html")
+            self.render("index.html", username = username)
         else:
             self.redirect('/')
 
 class Coursework(BaseHandler):
     def get(self):
-        self.render("course_work.html")
+        user_cookie = self.request.cookies.get('user_id')
+        if user_cookie != '':
+            user_id = int(user_cookie.split('|')[0])
+            _user_db_data = Users.get_by_id(user_id)
+            username = _user_db_data.user_name
+            self.render("course_work.html", username = username)
+        else:
+            self.redirect('/')
 
 class HelloUdacity(BaseHandler):
     def get(self):

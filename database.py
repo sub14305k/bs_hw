@@ -29,4 +29,4 @@ class Users(db.Model):
         user_name = db.StringProperty(required = True)
         user_pass = db.StringProperty(required = True)
         created_on = db.DateTimeProperty(auto_now_add = True)
-class Boom:
+

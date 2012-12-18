@@ -37,9 +37,13 @@ def valid_email(email):
 class Register(BaseHandler):
     
     def get(self):
-        user_cookie = self.request.cookies.get("user_id")
-        if user_cookie and user_cookie != "":
-            self.redirect("/unit4/welcome")
+        user_cookie = self.request.cookies.get('user_id')
+        if user_cookie and user_cookie != '':
+            user_id = int(user_cookie.split('|')[0])
+            _user_db_data = Users.get_by_id(user_id)
+            username = _user_db_data.user_name
+            message = 'You are already registered!'
+            self.render("welcome.html", username = username, message = message)
         else:
             self.render("register.html")
     def post(self):
@@ -96,9 +100,8 @@ class Register(BaseHandler):
                 new = Users(user_name = user_input, user_pass = hash_pass, user_email = email_input)
                 new.put()
                             
-                self.redirect('/unit4/welcome')
                 self.response.headers.add_header('Set-Cookie', 'user_id=%s|%s; Path=/' % (new.key().id(),hash_pass))
-        
+                self.redirect('/homework')
 
 class Welcome(BaseHandler):
        def get(self):
