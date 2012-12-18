@@ -1,6 +1,6 @@
 import webapp2
-from main import BaseHandler
 from database import Blog_db
+from main import render_str,BaseHandler
 from google.appengine.ext import db
 
 def blog_key(name = 'default'):

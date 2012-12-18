@@ -1,10 +1,13 @@
 from google.appengine.ext import db
-from main import render_str
 
 class Blog_db(db.Model):
         subject = db.StringProperty(required = True)
         content = db.TextProperty(required = True)
         created = db.DateTimeProperty(auto_now_add = True)
+        
+        def render_str(template, **params):
+            t = jinja_env.get_template(template)
+            return t.render(params)
 
         def render(self):
             self._render_text = self.content.replace('\n', '<br>')

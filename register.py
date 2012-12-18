@@ -37,14 +37,11 @@ def valid_email(email):
 class Register(BaseHandler):
     
     def get(self):
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         user_cookie = self.request.cookies.get("user_id")
         if user_cookie and user_cookie != "":
             self.redirect("/unit4/welcome")
-=======
-=======
->>>>>>> Project folder updated
+
         user_cookie = self.request.cookies.get('user_id')
         if user_cookie and user_cookie != "":
             user_id = int(user_cookie.split('|')[0])
@@ -52,10 +49,7 @@ class Register(BaseHandler):
             username = _user_db_data.user_name
             message = "You have already registered!"
             self.render("welcome.html", message = message, username = username)
-<<<<<<< HEAD
->>>>>>> Current Stable
-=======
->>>>>>> Project folder updated
+
         else:
             self.render("register.html")
             
