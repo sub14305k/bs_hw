@@ -1,4 +1,8 @@
 from google.appengine.ext import db
+<<<<<<< HEAD
+=======
+
+>>>>>>> update
 
 class Blog_db(db.Model):
         subject = db.StringProperty(required = True)
