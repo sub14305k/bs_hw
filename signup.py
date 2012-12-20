@@ -1,19 +1,6 @@
 import webapp2
-import re
 from main import BaseHandler
-
-USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-PASS_RE = re.compile(r"^.{3,20}$")
-EMAIL_RE = re.compile(r"^[\S]+@[\S]+\.[\S]+$")
-
-def valid_username(username):
-    return username and USER_RE.match(username)
-
-def valid_password(password):
-    return password and PASS_RE.match(password)
-
-def valid_email(email):
-    return not email or EMAIL_RE.match(email)
+import utils
 
 class Signup(BaseHandler):
     
@@ -26,9 +13,9 @@ class Signup(BaseHandler):
         password_input = self.request.get('password')
         verify_input = self.request.get('verify')
         email_input = self.request.get('email')
-        valid_u = valid_username(user_input)
-        valid_p = valid_password(password_input)
-        valid_e = valid_email(email_input)
+        valid_u = utils.valid_username(user_input)
+        valid_p = utils.valid_password(password_input)
+        valid_e = utils.valid_email(email_input)
         user_error =  ''
         pass_error =  ''
         email_error = ''
@@ -54,7 +41,7 @@ class Signup(BaseHandler):
 class Welcome(BaseHandler):
        def get(self):
         username = self.request.get('username')
-        if valid_username(username):
+        if utils.valid_username(username):
             self.render('welcome.html', username = username)
         else:
             self.redirect('/unit2/signup')

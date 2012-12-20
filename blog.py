@@ -2,9 +2,7 @@ import webapp2
 from main import BaseHandler
 from database import Blog_db
 from google.appengine.ext import db
-
-def blog_key(name = 'default'):
-    return db.Key.from_path('blogs', name)
+import utils
 
 class Blog_Page(BaseHandler):
         
@@ -21,7 +19,7 @@ class Create_Blog(BaseHandler):
         contents = self.request.get("content")
 
         if subject and contents:
-            s = Blog_db(parent = blog_key(), subject = subject, content = contents)
+            s = Blog_db(parent = utils.blog_key(), subject = subject, content = contents)
             s.put()
 
             self.redirect("/blog/%s" % str(s.key().id()))
@@ -31,7 +29,7 @@ class Create_Blog(BaseHandler):
 
 class Permalink(BaseHandler):
     def get(self, post_id):
-        key = db.Key.from_path('Blog_db', int(post_id), parent = blog_key())
+        key = db.Key.from_path('Blog_db', int(post_id), parent = utils.blog_key())
         post = db.get(key)
         
         if not post:

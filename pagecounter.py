@@ -1,35 +1,19 @@
 import webapp2
 from main import BaseHandler
-# import hashlib
-import hmac
-
-SECRET = 'nl;ajkdfnHJKsHJh56dafdfasfsd'
-
-def hash_str(s):
-    return hmac.new(SECRET, s).hexdigest()
-
-def make_secure_val(s):
-    return s + '|' + hash_str(s)
-
-def check_secure_val(h):
-    find_split = h.find('|')
-    if hash_str(h[:find_split]) == h[find_split + 1:]:
-        return h[:find_split]
-    else:
-        return None
+import utils
 
 class Page_Counter(BaseHandler):
 	def get(self):
 		visits = 0
 		visits_cookie_val = self.request.cookies.get('visits')
 		if visits_cookie_val:
-			cookie_valid = check_secure_val(visits_cookie_val)
+			cookie_valid = utils.check_secure_val(visits_cookie_val)
 			if cookie_valid:
 				visits = int(cookie_valid)
 		
 		visits += 1
 
-		new_cookie_val = make_secure_val(str(visits))
+		new_cookie_val = utils.make_secure_val(str(visits))
 
 		self.response.headers.add_header('Set-Cookie', 'visits=%s;Path=/' % new_cookie_val) 
 		self.render("page_visits.html", visits = visits)

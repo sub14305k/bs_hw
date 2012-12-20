@@ -1,38 +1,8 @@
 import webapp2
-import re
+import utils
 from main import BaseHandler
-import random
-import string
-import hashlib
 from database import Users
 from google.appengine.ext import db
-
-def make_salt():
-    make_characters = string.letters
-    return ''.join(random.sample(make_characters,5))
-
-def make_pw_hash(name, pw, salt = None):
-    if not salt:
-        salt = make_salt()
-    h = hashlib.sha256(name + pw + salt).hexdigest()
-    return '%s,%s' % (h,salt)
-
-def valid_pw(name, pw, h):
-    salt = h.split(',')[1]
-    return h == make_pw_hash(name, pw, salt)
-
-USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-PASS_RE = re.compile(r"^.{3,20}$")
-EMAIL_RE = re.compile(r"^[\S]+@[\S]+\.[\S]+$")
-
-def valid_username(username):
-    return username and USER_RE.match(username)
-
-def valid_password(password):
-    return password and PASS_RE.match(password)
-
-def valid_email(email):
-    return not email or EMAIL_RE.match(email)
 
 class Register(BaseHandler):
     
@@ -52,9 +22,9 @@ class Register(BaseHandler):
         password_input = self.request.get('password')
         verify_input = self.request.get('verify')
         email_input = self.request.get('email')
-        valid_u = valid_username(user_input)
-        valid_p = valid_password(password_input)
-        valid_e = valid_email(email_input)
+        valid_u = utils.valid_username(user_input)
+        valid_p = utils.valid_password(password_input)
+        valid_e = utils.valid_email(email_input)
         user_error =  ''
         pass_error =  ''
         email_error = ''
@@ -75,7 +45,7 @@ class Register(BaseHandler):
         if has_error != False:
             self.render("register.html",error_user = user_error ,error_pass = pass_error,error_verify = verify_error,error_email = email_error,username = user_input,email = email_input)
         else:
-            hash_pass = make_pw_hash(user_input,password_input)
+            hash_pass = utils.make_pw_hash(user_input,password_input)
             user_input = str(user_input)
             user_taken = False
             email_taken = False
@@ -109,7 +79,7 @@ class Welcome(BaseHandler):
         user_id = int(user_cookie.split('|')[0])
         _user_db_data = Users.get_by_id(user_id)
         username = _user_db_data.user_name
-        if valid_username(username):
+        if utils.valid_username(username):
             self.render('welcome.html', username = username)
         else:
             self.redirect('/unit4/signup')
