@@ -90,6 +90,13 @@ def ROT13(s):
 ###B:END
 
 ###C: Methods used in blog creation
+
+def get_listed_posts():
+    
+    posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
+    posts = list(posts) 
+    return posts 
+
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)
 
@@ -102,20 +109,26 @@ def render(self):
 
 IP_URL = "http://api.hostip.info/?ip="
 def get_coords(ip):
-	ip = "4.2.2.2"
-	url = IP_URL + ip
-	content = urllib2.urlopen(url).read()
-	if content:
-		p = minidom.parseString(content)
-    	coords = p.getElementsByTagName("gml:coordinates")
-    	if coords and coords[0].childNodes[0].nodeValue:
-        	lon, lat = coords[0].childNodes[0].nodeValue.split(',')
-    	return db.GeoPt(lat, lon)
+    url = IP_URL + ip
+    content = None
+    coords = None
+    try:
+        content = urllib2.urlopen(url).read()
+    except URLError:
+        return
+    
+    if content:
+	    p = minidom.parseString(content)
+            coords = p.getElementsByTagName("gml:coordinates")
+        
+            if coords and coords[0].childNodes[0].nodeValue:
+               lon, lat = coords[0].childNodes[0].nodeValue.split(',')
+               return db.GeoPt(lat, lon)
 
 GMAPS_URL = "http://maps.googleapis.com/maps/api/staticmap?size=380x263&sensor=false&"
 def gmaps_img(points):
 	markers = '&'.join('markers=%s,%s' % (p.lat, p.lon) for p in points)
 	return GMAPS_URL + markers
-
+###D:END
 
 

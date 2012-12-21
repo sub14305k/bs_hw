@@ -7,7 +7,8 @@ import utils
 class Blog_Page(BaseHandler):
         
     def get(self):
-        posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
+        posts = utils.get_listed_posts()
+        # posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
         self.render("blog.html", posts = posts)
 
 class Create_Blog(BaseHandler):
@@ -38,7 +39,22 @@ class Permalink(BaseHandler):
 
         self.render("permalink.html", post = post)
 
+class Blog_JSON(BaseHandler):
+    def get(self):
+        posts = utils.get_listed_posts()
+        listBlog = []
+        for post in posts:
+            listBlog.append('{"content":"%s", "subject":"%s","created":"%s"}' % (posts[0][0],posts[1],posts[2]))
+        JSON_string = ','.join(listBlog)
+        self.render("blog_json.html", content = JSON_string)
+
+class Permalink_JSON(BaseHandler):
+    def get(self):
+        self.render("blog_json.html")
+
 app = webapp2.WSGIApplication([('/blog/?', Blog_Page),
                                ('/blog/newpost', Create_Blog),
-                               ('/blog/([0-9]+)', Permalink)
+                               ('/blog/([0-9]+)', Permalink),
+                               ('/blog.json', Blog_JSON),
+                               ('/blog/([0-9]+.json', Permalink_JSON)
 ], debug=True)

@@ -14,6 +14,21 @@
     height: 13px;
 }
 
+#hidden_map
+{
+    border: 1px solid white;
+    display: none;
+    height: 263px;
+    margin-left: 34px;
+    margin-top: 73px;
+    padding: 2px;
+    width: 380px;}
+
+#map_button
+{
+    margin-left: 371px;
+}
+
 #container
 {
     width:100%;
@@ -340,6 +355,7 @@ input[type=submit]
 
 #art_container
 {
+    display:block;
     height: 491px;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -407,6 +423,13 @@ input[type=submit]
     position: absolute;
     bottom: 35px;
     right: 100px;
+}
+
+#map_label
+{
+    float: left;
+    margin-left: 155px;
+    margin-top: 34px;
 }
 
 .error
