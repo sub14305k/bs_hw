@@ -9,6 +9,13 @@ class Blog_db(db.Model):
         def render_blog(self):
             self._render_text = self.content.replace('\n', '<br>')
             return utils.render_str("post.html", p = self)
+        
+        def create_dict(self):
+            d = { 'subject': self.subject,
+                  'content': self.content,
+                  'created': self.created
+                 }
+            return d
 
 class Art(db.Model):
         title = db.StringProperty(required = True)
