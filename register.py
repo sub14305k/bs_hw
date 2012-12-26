@@ -72,6 +72,7 @@ class Register(BaseHandler):
                             
                 self.response.headers.add_header('Set-Cookie', 'user_id=%s|%s; Path=/' % (new.key().id(),hash_pass))
                 self.redirect('/homework')
+#                self.redirect('/blog/welcome')
 
 class Welcome(BaseHandler):
        def get(self):
@@ -83,7 +84,11 @@ class Welcome(BaseHandler):
             self.render('welcome.html', username = username)
         else:
             self.redirect('/unit4/signup')
+#             self.redirect('/blog/signup')
 
 app = webapp2.WSGIApplication([('/unit4/signup',Register),
                                ('/unit4/welcome', Welcome)
 ], debug=True)
+#app = webapp2.WSGIApplication([('/blog/signup',Register),
+#                               ('/blog/welcome', Welcome)
+#], debug=True)

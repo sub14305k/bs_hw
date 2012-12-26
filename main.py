@@ -1,4 +1,5 @@
 import webapp2
+import json
 import utils
 from database import Users
 
@@ -11,6 +12,11 @@ class BaseHandler(webapp2.RequestHandler):
     
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
+        
+    def render_json(self, d):
+        json_txt = json.dumps(d)
+        self.response.headers['Content-Type'] = 'application/json; Charset = UTF-8'
+        self.write(json_txt)
         
 class Homework(BaseHandler):
     def get(self):

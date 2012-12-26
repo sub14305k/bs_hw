@@ -25,6 +25,7 @@ class Login(BaseHandler):
                     user_pass_string = str(utils.make_pw_hash(username,pw))
                     self.response.headers.add_header('Set-Cookie', 'user_id=%s|%s;Path=/' % (user_id,user_pass_string))
                     self.redirect('/homework')
+#                    self.redirect('/blog/welcome')
                 else:
                      error = 'Sorry Invalid Login, Please try again.'
             else:
@@ -34,3 +35,5 @@ class Login(BaseHandler):
       
 app = webapp2.WSGIApplication([('/',Login)
 ], debug=True)
+#app = webapp2.WSGIApplication([('/blog/login',Login)
+#], debug=True)

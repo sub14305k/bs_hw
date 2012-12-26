@@ -6,6 +6,9 @@ class Logout(BaseHandler):
         self.response.headers.add_header('Set-Cookie', 'user_id=;Path=/')
         self.response.headers.add_header('Set-Cookie', 'visits=;Path=/')
         self.redirect('/')
+#        self.redirect('/blog/signup')
 
+#app = webapp2.WSGIApplication([('/blog/logout', Logout)
+#], debug=True)
 app = webapp2.WSGIApplication([('/unit4/logout',Logout)
 ], debug=True)

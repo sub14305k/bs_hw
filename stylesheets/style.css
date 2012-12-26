@@ -300,10 +300,23 @@ input, select
     color:Azure ;
 }
 
+.chrome select
+{
+	border-color:white;
+    background-color:DarkSlateGrey;
+    font-family:'Margarine', cursive;
+    color:Azure ;
+}
+
 #year_input
 {
     width: 38px;
 }
+
+.chrome #year_input
+{
+	width: 59px;
+} 
 
 input[type=submit]
 {

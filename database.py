@@ -13,7 +13,7 @@ class Blog_db(db.Model):
         def create_dict(self):
             d = { 'subject': self.subject,
                   'content': self.content,
-                  'created': self.created
+                  'created': str(self.created)
                  }
             return d
 

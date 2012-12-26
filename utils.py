@@ -7,7 +7,7 @@ import jinja2
 import os
 import hmac
 import urllib2
-import json
+#import json
 from xml.dom import minidom
 
 ###0:Jinja Template Method
@@ -90,24 +90,11 @@ def ROT13(s):
     return replaced_string
 ###B:END
 
-###C: Methods used in blog creation
+###C: Methods used in blog creation and JSON creation
     
-def get_full_JSON():
+def get_posts():
     posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
-    posts_list = []
-    for item in posts:
-       posts_list.append('{"subject":"%s", "content":"%s","created":"%s"}' % (item.subject,item.content,item.created))
-#    full_string = ','.join(posts_list)
-    JSON = json.dumps(posts_list)
-    return JSON
-
-def get_single_JSON(post):
-    entry = post
-    single_post_dict = entry.create_dict()
-#    single_post_list.append('{"subject":"%s", "content":"%s","created":"%s"}' % (entry.subject,entry.content,entry.created))
-#    JSON_single_string = ','.join(single_post_list)
-#    JSON = json.dumps(single_post_dict)
-    return single_post_dict 
+    return posts
 
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)

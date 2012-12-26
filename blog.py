@@ -40,21 +40,19 @@ class Permalink(BaseHandler):
 
 class Blog_JSON(BaseHandler):
     def get(self):
-        content = utils.get_full_JSON()
-        self.response.headers.add_header("Content-Type", "application/json; charset=UTF-8")
-        self.render("blog_json.html", content = content)
+         content = utils.get_posts()
+         self.render_json([p.create_dict() for p in content])
 
 class Permalink_JSON(BaseHandler):
     def get(self, post_id):
         key = db.Key.from_path('Blog_db', int(post_id), parent = utils.blog_key())
         post = db.get(key)
-        content = utils.get_single_JSON(post)
-#        self.response.headers.add_header("Content-Type", "application/json; charset=UTF-8")
-        self.render("blog_json.html", content = content)
-
+        self.render_json(post.create_dict())
+        
 app = webapp2.WSGIApplication([('/blog/?', Blog_Page),
                                ('/blog/newpost', Create_Blog),
                                ('/blog/([0-9]+)', Permalink),
                                ('/blog.json', Blog_JSON),
+#                               ('/blog/.json', Blog_JSON),
                                ('/blog/([0-9]+).json', Permalink_JSON)
 ], debug=True)
