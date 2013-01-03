@@ -13,7 +13,7 @@ class Blog_Page(BaseHandler):
             posts = utils.cache_blog()
 #        posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
         stats = memcache.get_stats()
-        time = stats['oldest_item_age']
+        time = stats.get('oldest_item_age')
         self.render("blog.html", posts = posts, time = time)
 
 class Create_Blog(BaseHandler):
