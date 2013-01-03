@@ -212,6 +212,15 @@ h1
     margin-top: -16px;
 }
 
+#query_time
+{
+	color: Azure;
+    font-family: 'Margarine',cursive;
+    left: 863px;
+    position: absolute;
+    top: 593px;
+}
+
 .post + .post
 {
    margin-left: 183px;

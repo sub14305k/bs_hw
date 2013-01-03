@@ -3,12 +3,14 @@ import string
 import hashlib
 import re
 from google.appengine.ext import db
+from google.appengine.api import memcache
 import jinja2
 import os
 import hmac
 import urllib2
 #import json
 from xml.dom import minidom
+import logging
 
 ###0:Jinja Template Method
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -102,6 +104,16 @@ def blog_key(name = 'default'):
 def render(self):
     self._render_text = self.content.replace('\n', '<br>')
     return render_str("post.html", p = self)
+
+def cache_blog(update = False):
+    key = 'blog_front'
+    posts = memcache.get(key)
+    
+    if posts is None or update:
+        posts = get_posts()
+        memcache.set(key,posts)
+    return posts
+    
 ###C:END
 
 ###D: ASCHII_Chan 2 Geolocation
@@ -123,6 +135,18 @@ def get_coords(ip):
             if coords and coords[0].childNodes[0].nodeValue:
                lon, lat = coords[0].childNodes[0].nodeValue.split(',')
                return db.GeoPt(lat, lon)
+
+def top_arts(update = False):
+    key = 'top'
+    arts = memcache.get(key)
+    if arts is None or update:
+        logging.error("DB QUERY")
+        arts = db.GqlQuery("SELECT * FROM Art ORDER BY created DESC")
+
+        #prevent the running of multiple queries
+        arts = list(arts)
+        memcache.set(key, arts)
+    return arts
 
 GMAPS_URL = "http://maps.googleapis.com/maps/api/staticmap?size=380x263&sensor=false&"
 def gmaps_img(points):

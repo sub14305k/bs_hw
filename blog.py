@@ -2,13 +2,19 @@ import webapp2
 from main import BaseHandler
 from database import Blog_db
 from google.appengine.ext import db
+from google.appengine.api import memcache
 import utils
 
 class Blog_Page(BaseHandler):
         
     def get(self):
-        posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
-        self.render("blog.html", posts = posts)
+        posts = memcache.get('blog_front')
+        if not posts:
+            posts = utils.cache_blog()
+#        posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
+        stats = memcache.get_stats()
+        time = stats['oldest_item_age']
+        self.render("blog.html", posts = posts, time = time)
 
 class Create_Blog(BaseHandler):
     
@@ -21,6 +27,7 @@ class Create_Blog(BaseHandler):
         if subject and contents:
             s = Blog_db(parent = utils.blog_key(), subject = subject, content = contents)
             s.put()
+            utils.cache_blog(True)
 
             self.redirect("/blog/%s" % str(s.key().id()))
         else:

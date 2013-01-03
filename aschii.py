@@ -1,25 +1,18 @@
 import webapp2
 from main import BaseHandler
 from google.appengine.ext import db
+from google.appengine.api import memcache
 from database import Art
 import utils
 
 class ASCIIChan(BaseHandler):
 
     def render_ASCII_page(self, title="", art = "", error = ""):
-        arts = db.GqlQuery("SELECT * FROM Art ORDER BY created DESC")
 
-        #prevent the running of multiple queries
-        arts = list(arts)
-
-        #find which arts have coords
-        # points = []
-        # for a in arts:
-        #     if arts.coords:
-        #         points.append(a.coords)
+        arts = utils.top_arts()
+        img_url = None
         points = filter(None, (a.coords for a in arts))
 
-        img_url = None
         if points:
             img_url = utils.gmaps_img(points)
 
@@ -39,6 +32,8 @@ class ASCIIChan(BaseHandler):
                 a.coords = coords
 
             a.put()
+            #rerun the query and update CACHE
+            top_arts(True)
 
             self.redirect("/course_work/unit3/ASCIIChan")
         else:
