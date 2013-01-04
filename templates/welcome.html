@@ -11,8 +11,12 @@
 <body>
     <div id="container">
         <div id="inner">
-        
+        	    <div class="welcome_user">Welcome, {{user}}</div><a id="post_link_individual" href="/unit4/logout"><div class="logout_button">Logout</div></a>
+        	    {% if username: %}   
                 <h1>Welcome, {{username}}</h1>
+                {% else: %}
+                <h1>Welcome, {{user}}</h1>
+                {% endif %}
                 <br />
                 <p>{{message}}</p>
                 <br />

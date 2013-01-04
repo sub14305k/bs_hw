@@ -2,6 +2,7 @@ import webapp2
 import json
 import utils
 from database import Users
+ 
 
 class BaseHandler(webapp2.RequestHandler):
     def write(self, *a, **kw):
@@ -20,29 +21,43 @@ class BaseHandler(webapp2.RequestHandler):
         
 class Homework(BaseHandler):
     def get(self):
-        user_cookie = self.request.cookies.get('user_id')
-        if user_cookie and user_cookie != '':
-            user_id = int(user_cookie.split('|')[0])
-            _user_db_data = Users.get_by_id(user_id)
-            username = _user_db_data.user_name
-            self.render("index.html", username = username)
+#        user_cookie = self.request.cookies.get('user_id')
+#        if user_cookie and user_cookie != '':
+#            user_id = int(user_cookie.split('|')[0])
+#            _user_db_data = Users.get_by_id(user_id)
+#            user = _user_db_data.user_name
+        valid_cookie = self.request.cookies.get('user_id')
+        if valid_cookie:
+            import globals 
+            if globals.users != None:
+                test = 'test'
+                self.render("index.html", user = globals.users, test = test)
+            else:
+                get_user = utils.check_cookie(self)
+                globals.users = get_user
+                self.render("index.html", user = globals.users)
         else:
             self.redirect('/')
 
 class Coursework(BaseHandler):
     def get(self):
-        user_cookie = self.request.cookies.get('user_id')
-        if user_cookie != '':
-            user_id = int(user_cookie.split('|')[0])
-            _user_db_data = Users.get_by_id(user_id)
-            username = _user_db_data.user_name
-            self.render("course_work.html", username = username)
+        valid_cookie = self.request.cookies.get('user_id')
+        if valid_cookie:
+            import globals 
+            if globals.users != None:
+                self.render("course_work.html", user = globals.users)
         else:
             self.redirect('/')
 
 class HelloUdacity(BaseHandler):
     def get(self):
-        self.render("hello.html")
+        valid_cookie = self.request.cookies.get('user_id')
+        if valid_cookie:
+            import globals 
+            if globals.users != None:
+                self.render("hello.html", user= globals.users)
+        else:
+            self.redirect('/')
          
 app = webapp2.WSGIApplication([('/homework', Homework),
                                ('/course_work', Coursework),

@@ -2,6 +2,7 @@ import webapp2
 import utils
 from main import BaseHandler
 from google.appengine.ext import db
+import globals
 
 class Login(BaseHandler):
     
@@ -9,7 +10,8 @@ class Login(BaseHandler):
         self.render("login.html")
     
     def post(self):
-
+        
+        globals.init()
         username = self.request.get('username')
         pw = self.request.get('password')
         error = ''

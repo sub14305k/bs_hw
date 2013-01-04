@@ -4,6 +4,7 @@ import hashlib
 import re
 from google.appengine.ext import db
 from google.appengine.api import memcache
+from database import Users
 import jinja2
 import os
 import hmac
@@ -65,6 +66,16 @@ def valid_password(password):
 
 def valid_email(email):
     return not email or EMAIL_RE.match(email)
+
+def check_cookie(self):
+    user_cookie = self.request.cookies.get('user_id')
+    if user_cookie and user_cookie != '':
+        user_id = int(user_cookie.split('|')[0])
+        _user_db_data = Users.get_by_id(user_id)
+        user = _user_db_data.user_name
+        return user
+    else:
+        return None
 ###A:END
 
 ###B: Method used to convert strings using ROT13 encoding
@@ -98,6 +109,11 @@ def get_posts():
     posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
     return posts
 
+def get_post(post_id):
+    key = db.Key.from_path('Blog_db', int(post_id), parent = blog_key())
+    post = db.get(key)
+    return post
+
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)
 
@@ -112,6 +128,15 @@ def cache_blog(update = False):
     if posts is None or update:
         posts = get_posts()
         memcache.set(key,posts)
+    return posts
+
+def cache_permalink(post_id,post, update = False):
+    key = post_id
+    posts = memcache.get(key)
+    
+    if posts is None or update:
+        posts = post
+        memcache.set(key, posts)
     return posts
     
 ###C:END

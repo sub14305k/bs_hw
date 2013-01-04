@@ -21,8 +21,6 @@ handlers:
 
 - url: /
   script: login.app
-# - url: /blog/login
-  # script: login.app
 - url: /homework
   script: main.app
 
@@ -56,25 +54,21 @@ handlers:
 - url: /blog/([0-9]+)
   script: blog.app
 
+- url: /blog/flush
+  script: blog.app
+
 - url: /course_work/unit4/pagecounter
   script: pagecounter.app
 
-- url: /unit4/signup
-  script: register.app# - url: /blog/signup
-  # script: register.app
-
-- url: /unit4/welcome
+- url: /blog/signup
   script: register.app
-# - url: /blog/welcome
-  # script: register.app
+- url: /blog/welcome
+  script: register.app
 - url: /unit4/logout
-  script: logout.app# - url: /blog/logout
-  # script: logout.app  
+  script: logout.app
 - url: /blog.json
   script: blog.app
 
-# - url: /blog/.json
-  # script: blog.app  
 - url: /blog/([0-9]+).json
   script: blog.app
 

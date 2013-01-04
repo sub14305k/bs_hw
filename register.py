@@ -7,15 +7,20 @@ from google.appengine.ext import db
 class Register(BaseHandler):
     
     def get(self):
-        user_cookie = self.request.cookies.get('user_id')
-        if user_cookie and user_cookie != '':
-            user_id = int(user_cookie.split('|')[0])
-            _user_db_data = Users.get_by_id(user_id)
-            username = _user_db_data.user_name
-            message = 'You are already registered!'
-            self.render("welcome.html", username = username, message = message)
+#        user_cookie = self.request.cookies.get('user_id')
+#        if user_cookie and user_cookie != '':
+#            user_id = int(user_cookie.split('|')[0])
+#            _user_db_data = Users.get_by_id(user_id)
+#            user= _user_db_data.user_name
+        valid_cookie = self.request.cookies.get('user_id')
+        if valid_cookie:
+            import globals 
+            if globals.users != None:
+                message = 'You are already registered!'
+                self.render("welcome.html", user = globals.users, message = message)
         else:
             self.render("register.html")
+            
     def post(self):
         has_error = False
         user_input = self.request.get('username')
@@ -72,22 +77,24 @@ class Register(BaseHandler):
                             
                 self.response.headers.add_header('Set-Cookie', 'user_id=%s|%s; Path=/' % (new.key().id(),hash_pass))
                 self.redirect('/homework')
-#                self.redirect('/blog/welcome')
 
 class Welcome(BaseHandler):
        def get(self):
-        user_cookie = self.request.cookies.get('user_id')
-        user_id = int(user_cookie.split('|')[0])
-        _user_db_data = Users.get_by_id(user_id)
-        username = _user_db_data.user_name
-        if utils.valid_username(username):
-            self.render('welcome.html', username = username)
+#        user_cookie = self.request.cookies.get('user_id')
+#        user_id = int(user_cookie.split('|')[0])
+#        _user_db_data = Users.get_by_id(user_id)
+#        user = _user_db_data.user_name
+#        if utils.valid_username(username):
+        valid_cookie = self.request.cookies.get('user_id')
+        if valid_cookie:
+            import globals 
+            if globals.users != None:
+                self.render('welcome.html', user = globals.users)
         else:
-            self.redirect('/unit4/signup')
-#             self.redirect('/blog/signup')
-
-app = webapp2.WSGIApplication([('/unit4/signup',Register),
-                               ('/unit4/welcome', Welcome)
+            self.redirect('/blog/signup')
+            
+app = webapp2.WSGIApplication([('/blog/signup',Register),
+                               ('/blog/welcome', Welcome)
 ], debug=True)
 #app = webapp2.WSGIApplication([('/blog/signup',Register),
 #                               ('/blog/welcome', Welcome)

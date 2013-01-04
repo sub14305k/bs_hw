@@ -13,7 +13,7 @@
 <body>
     <div id="container">
         <div id="inner">
-        	<div class="welcome_user">Welcome, {{username}}</div><a id="post_link_individual" href="/unit4/logout"><div class="logout_button">Logout</div></a>
+        	<div class="welcome_user">Welcome, {{user}}</div><a id="post_link_individual" href="/unit4/logout"><div class="logout_button">Logout</div></a>
             <h1>CS253 Homework Assignments</h1>
             <div style="float: left; width: 450px;">
             <h2 class="menu_header">Unit 1</h2>
@@ -26,10 +26,10 @@
             <h2 class="menu_header">Unit 3</h2>
             <p><a href="/blog" id="blog" class="a_Almond">My Blog</a> - Creation of a personal blog.</p> 
             <h2 class="menu_header">Unit 4</h2>
-            <p><a href="/unit4/signup" id="registration" class="a_Almond">Registration Page</a> - Create a registration page that encrypts data and stores usernames and passwords.</p>
+            <p><a href="/blog/signup" id="registration" class="a_Almond">Registration Page</a> - Create a registration page that encrypts data and stores usernames and passwords.</p>
             </div>
             <label>
-                <div id="label">CLICK TO GOTO COURSEWORK PAGE =></div>
+                <span>{{test}}</span><div id="label">CLICK TO GOTO COURSEWORK PAGE =></div>
             <a href="/course_work" id="course_work" class="a_Almond"><div id="coursework"></div></a>
             </label>
         </div>

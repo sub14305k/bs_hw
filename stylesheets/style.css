@@ -209,7 +209,8 @@ h1
 {
     position: relative;
     margin-left: 364px;
-    margin-top: -16px;
+    margin-top: -50px;
+     width: 200px;
 }
 
 #query_time
@@ -346,7 +347,7 @@ input[type=submit]
 {
    position: relative;
    margin-left: 142px;
-   margin-bottom: 40px; 
+   margin-top: -25px; 
 }
 
 #rot13_header
@@ -382,7 +383,7 @@ input[type=submit]
     overflow-x: hidden;
     overflow-y: scroll;
     width: 466px;
-    margin-top: -31px;
+    margin-top: -62px;
 */
 }
 
@@ -390,8 +391,8 @@ input[type=submit]
 {
     color: white;
     margin-left: 104px;
-    margin-top: -39px;
-    padding-bottom: 20px;
+    margin-top: -61px;
+    padding-bottom: 40px;
     font-family:'Merienda', cursive;
     /*text-decoration: underline;*/
 }
@@ -412,8 +413,9 @@ input[type=submit]
 .art-body
 {
     margin: 0;
-    font-size: 15px;
+    font-size: 10px;
     color: white;
+    padding-top: 10px;
 }
 
 #page_navigate

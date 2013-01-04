@@ -11,9 +11,10 @@
 <body>
     <div id="container">
         <div id="inner">
+        	<div class="welcome_user">Welcome, {{user}}</div><a id="post_link_individual" href="/unit4/logout"><div class="logout_button">Logout</div></a>
             <div id="blog_header"><h1><a href="/blog" class="a_Almond">CS 253 Blog</a></h1></div>
             <span id="post_return_link"><a href="/homework">Return to homework</a></span>
-            <span id="query_time">Queried: {{time}} seconds ago </span>
+            <span id="query_time">{{time}}</span>
             <div id="blog_content">
                 {% block content %}
                 {% endblock %}
