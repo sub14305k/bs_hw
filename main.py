@@ -5,6 +5,7 @@ from database import Users
  
 
 class BaseHandler(webapp2.RequestHandler):
+    
     def write(self, *a, **kw):
         self.response.out.write(*a, **kw)
 
@@ -20,18 +21,14 @@ class BaseHandler(webapp2.RequestHandler):
         self.write(json_txt)
         
 class Homework(BaseHandler):
+    
     def get(self):
-#        user_cookie = self.request.cookies.get('user_id')
-#        if user_cookie and user_cookie != '':
-#            user_id = int(user_cookie.split('|')[0])
-#            _user_db_data = Users.get_by_id(user_id)
-#            user = _user_db_data.user_name
+
         valid_cookie = self.request.cookies.get('user_id')
         if valid_cookie:
             import globals 
             if globals.users != None:
-                test = 'test'
-                self.render("index.html", user = globals.users, test = test)
+                self.render("index.html", user = globals.users)
             else:
                 get_user = utils.check_cookie(self)
                 globals.users = get_user
@@ -40,6 +37,7 @@ class Homework(BaseHandler):
             self.redirect('/')
 
 class Coursework(BaseHandler):
+    
     def get(self):
         valid_cookie = self.request.cookies.get('user_id')
         if valid_cookie:
@@ -50,6 +48,7 @@ class Coursework(BaseHandler):
             self.redirect('/')
 
 class HelloUdacity(BaseHandler):
+    
     def get(self):
         valid_cookie = self.request.cookies.get('user_id')
         if valid_cookie:

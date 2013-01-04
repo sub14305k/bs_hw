@@ -12,11 +12,7 @@ time_start_blog = datetime.datetime.now()
 class Blog_Page(BaseHandler):
         
     def get(self):
-#        user_cookie = self.request.cookies.get('user_id')
-#        if user_cookie and user_cookie != '':
-#            user_id = int(user_cookie.split('|')[0])
-#            _user_db_data = Users.get_by_id(user_id)
-#            user = _user_db_data.user_name
+
         valid_cookie = self.request.cookies.get('user_id')
         if valid_cookie:
             import globals 
@@ -37,21 +33,10 @@ class Blog_Page(BaseHandler):
         else:
             self.redirect('/')
    
-#        posts = db.GqlQuery("SELECT * FROM Blog_db ORDER BY created DESC LIMIT 10")
-#        stats = memcache.get_stats()
-#        seconds = stats.get('oldest_item_age')
- 
-
 class Create_Blog(BaseHandler):
     
     def get(self):
         
-#        user_cookie = self.request.cookies.get('user_id')
-#        
-#        if user_cookie and user_cookie != '':
-#            user_id = int(user_cookie.split('|')[0])
-#            _user_db_data = Users.get_by_id(user_id)
-#            user = _user_db_data.user_name
         valid_cookie = self.request.cookies.get('user_id')
         if valid_cookie:
             import globals 
@@ -82,22 +67,15 @@ class Create_Blog(BaseHandler):
 
 time_start_post = datetime.datetime.now()
 class Permalink(BaseHandler):
-#    def get(self, post_id):
+
      def get(self,post_id):
-#        user_cookie = self.request.cookies.get('user_id')
-#        if user_cookie and user_cookie != '':
-#            user_id = int(user_cookie.split('|')[0])
-#            _user_db_data = Users.get_by_id(user_id)
-#            user = _user_db_data.user_name
+
         valid_cookie = self.request.cookies.get('user_id')
         if valid_cookie:
             import globals 
             if globals.users != None:
             
-            
                 global time_start_post;
-        #        key = db.Key.from_path('Blog_db', int(post_id), parent = utils.blog_key())
-        #        post = db.get(key)
                 post = memcache.get(post_id)
                 
                 if not post:
@@ -125,8 +103,7 @@ class Blog_JSON(BaseHandler):
 
 class Permalink_JSON(BaseHandler):
     def get(self, post_id):
-#        key = db.Key.from_path('Blog_db', int(post_id), parent = utils.blog_key())
-#        post = db.get(key)
+        
         post = utils.get_post(post_id)
         self.render_json(post.create_dict())
         

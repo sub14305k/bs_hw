@@ -9,7 +9,6 @@ import jinja2
 import os
 import hmac
 import urllib2
-#import json
 from xml.dom import minidom
 import logging
 

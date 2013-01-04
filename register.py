@@ -7,11 +7,7 @@ from google.appengine.ext import db
 class Register(BaseHandler):
     
     def get(self):
-#        user_cookie = self.request.cookies.get('user_id')
-#        if user_cookie and user_cookie != '':
-#            user_id = int(user_cookie.split('|')[0])
-#            _user_db_data = Users.get_by_id(user_id)
-#            user= _user_db_data.user_name
+
         valid_cookie = self.request.cookies.get('user_id')
         if valid_cookie:
             import globals 
@@ -80,11 +76,7 @@ class Register(BaseHandler):
 
 class Welcome(BaseHandler):
        def get(self):
-#        user_cookie = self.request.cookies.get('user_id')
-#        user_id = int(user_cookie.split('|')[0])
-#        _user_db_data = Users.get_by_id(user_id)
-#        user = _user_db_data.user_name
-#        if utils.valid_username(username):
+
         valid_cookie = self.request.cookies.get('user_id')
         if valid_cookie:
             import globals 
@@ -96,6 +88,3 @@ class Welcome(BaseHandler):
 app = webapp2.WSGIApplication([('/blog/signup',Register),
                                ('/blog/welcome', Welcome)
 ], debug=True)
-#app = webapp2.WSGIApplication([('/blog/signup',Register),
-#                               ('/blog/welcome', Welcome)
-#], debug=True)

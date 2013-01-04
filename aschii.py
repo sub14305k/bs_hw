@@ -39,7 +39,6 @@ class ASCIIChan(BaseHandler):
                 a.coords = coords
 
             a.put()
-            #rerun the query and update CACHE
             utils.top_arts(True)
 
             self.redirect("/course_work/unit3/ASCIIChan")
