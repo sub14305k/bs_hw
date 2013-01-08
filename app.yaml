@@ -21,6 +21,9 @@ handlers:
 
 - url: /
   script: login.app
+- url: /login
+  script: login.app
+
 - url: /homework
   script: main.app
 
@@ -60,10 +63,10 @@ handlers:
 - url: /course_work/unit4/pagecounter
   script: pagecounter.app
 
-- url: /blog/signup
+- url: /signup
   script: register.app
 - url: /blog/welcome
-  script: register.app
+  script: register.app
 - url: /unit4/logout
   script: logout.app
 - url: /blog.json
@@ -71,7 +74,13 @@ handlers:
 
 - url: /blog/([0-9]+).json
   script: blog.app
-
+  
+- url: /wiki/signup
+  script: wiki.app
+  
+- url: /wiki/wiki_page/(?:[a-zA-Z0-9_-]+/?)*
+  script: wiki.app
+  
 libraries:
 - name: webapp2
   version: "2.5.1"

@@ -1,22 +1,32 @@
 import webapp2
-import utils
 from main import BaseHandler
-from database import Users
-from google.appengine.ext import db
+import utils
 
-class Register(BaseHandler):
-    
+class WikiPage(BaseHandler):
     def get(self):
-
         valid_cookie = self.request.cookies.get('user_id')
         if valid_cookie:
             import globals 
             if globals.users != None:
-                message = 'You are already registered!'
-                self.render("welcome.html", user = globals.users, message = message)
+                self.render("wiki_page.html", user = globals.users)
+            else:
+                get_user = utils.check_cookie(self)
+                globals.users = get_user
+                self.render("wiki_page.html", user = globals.users)
         else:
-            self.render("register.html")
-            
+            self.redirect('/wiki/signup')
+
+class WikiSignup(BaseHandler):
+     
+    def get(self):
+        valid_cookie = self.request.cookies.get('user_id')
+        if valid_cookie:
+            import globals 
+            if globals.users != None:
+                self.redirect('/wiki')
+        else:
+            self.render("wiki_signup.html")
+    
     def post(self):
         has_error = False
         user_input = self.request.get('username')
@@ -44,7 +54,7 @@ class Register(BaseHandler):
             email_error = 'Invalid email, please try again.'
             has_error = True
         if has_error != False:
-            self.render("register.html",error_user = user_error ,error_pass = pass_error,error_verify = verify_error,error_email = email_error,username = user_input,email = email_input)
+            self.render("wiki_signup.html",error_user = user_error ,error_pass = pass_error,error_verify = verify_error,error_email = email_error,username = user_input,email = email_input)
         else:
             hash_pass = utils.make_pw_hash(user_input,password_input)
             user_input = str(user_input)
@@ -62,29 +72,34 @@ class Register(BaseHandler):
                 user_error = 'Sorry, the username you selected is already taken'
                 email_error= 'Sorry, this email is already registered'
                 if user_taken and email_taken:
-                    self.render('register.html', error_user = user_error, error_email = email_error)
+                    self.render('wiki_signup.html', error_user = user_error, error_email = email_error)
                 if user_taken:
-                    self.render('register.html', error_user = user_error, email = email_input)
+                    self.render('wiki_signup.html', error_user = user_error, email = email_input)
                 else: 
-                    self.render('register.html', error_email = email_error, username = user_input)
+                    self.render('wiki_signup.html', error_email = email_error, username = user_input)
             else:
                 new = Users(user_name = user_input, user_pass = hash_pass, user_email = email_input)
                 new.put()
                             
                 self.response.headers.add_header('Set-Cookie', 'user_id=%s|%s; Path=/' % (new.key().id(),hash_pass))
-                self.redirect('/homework')
+                self.redirect('/wiki')
 
-class Welcome(BaseHandler):
-       def get(self):
+class WikiLogin(BaseHandler):
+     def get(self):
+        self.render("wiki_login.html")
 
-        valid_cookie = self.request.cookies.get('user_id')
-        if valid_cookie:
-            import globals 
-            if globals.users != None:
-                self.render('welcome.html', user = globals.users)
-        else:
-            self.redirect('/signup')
-            
-app = webapp2.WSGIApplication([('/signup',Register),
-                               ('/blog/welcome', Welcome)
+class WikiLogout(BaseHandler):
+     def get(self):
+        self.render("wiki_logout.html")
+        
+class WikiEdit(BaseHandler):
+     def get(self):
+        self.render("wiki_edit.html")     
+
+PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
+app = webapp2.WSGIApplication([('/wiki/wiki_page/(?:[a-zA-Z0-9_-]+/?)*', WikiPage),
+                               ('/wiki/signup', WikiSignup),
+                               ('/wiki/login', WikiLogin),
+                               ('/wiki/logout', WikiLogout),
+                               ('/wiki/_edit', WikiEdit)
 ], debug=True)

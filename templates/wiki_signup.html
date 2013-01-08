@@ -1,20 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Unit4 - Register</title>
+    <title>CS253 Homework Assignments</title>
+    
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link href='http://fonts.googleapis.com/css?family=Margarine' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merienda:700,400' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
     <div id="container">
         <div id="inner">
-            <div id="inner_content_signup">
-                <h1>Sign Up</h1>
-                <br />
-                    <form method="post">
+			<!-- <div class="welcome_user">Welcome, {{user}}</div><div class="logout_button"><a id="post_link_individual" href="/unit4/logout">Logout</a></div> -->
+            
+            <div id="signup_text">
+            	<h1>CS253 Final: My First Wiki</h1>
+            	<p>To access the wiki you must first create an account. Please use the form below.</p>
+            <br/>
+            <form method="post">
                         
                         <label>Username:
                             <input style="margin-left: 50px" type="text" name="username" value="{{username}}" /><br><span style=" margin-left:2px; color:red" id="error_user">{{error_user}}</span>
@@ -35,11 +40,9 @@
                         <div id="signup_submit"><input type="submit" value="submit" /></div>
          
                     </form>
-                    <br />
-                    <br />
-                    <div id="signup_return_link"><a href="/homework" class="a_Almond">Return to login</a></div>
-            </div>
+             </div>
         </div>
-    </div>
+            <!-- <span id="page_navigate">Page: 1 • 2</span> -->
+    </div>  
 </body>
 </html>

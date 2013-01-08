@@ -4,6 +4,7 @@ from main import BaseHandler
 from google.appengine.ext import db
 import globals
 
+
 class Login(BaseHandler):
     
     def get(self):
@@ -26,7 +27,11 @@ class Login(BaseHandler):
                     user_id = str(entry.key().id())
                     user_pass_string = str(utils.make_pw_hash(username,pw))
                     self.response.headers.add_header('Set-Cookie', 'user_id=%s|%s;Path=/' % (user_id,user_pass_string))
-                    self.redirect('/homework')
+                    current_url = self.request.url.split('/')[-1]
+                    if current_url == 'login':
+                        self.redirect('/wiki/wiki_page/')
+                    else: 
+                        self.redirect('/homework')
 
                 else:
                      error = 'Sorry Invalid Login, Please try again.'
@@ -35,5 +40,6 @@ class Login(BaseHandler):
 
         self.render('login.html', error = error, username = username)
       
-app = webapp2.WSGIApplication([('/',Login)
+app = webapp2.WSGIApplication([('/login', Login),
+                               ('/homework/login', Login)
 ], debug=True)

@@ -1,6 +1,75 @@
 ﻿html
 {
    background-color:darkgrey;
+   padding:
+}
+
+#wiki_container
+{
+	position: relative;
+}
+
+#wiki_content
+{
+	position: absolute;
+}
+
+.wiki_background
+{
+	background:url('/images/chalkboard_frame.png');
+	background-size: 100% 100%;
+    background-repeat:no-repeat;
+	background-color:DarkSlateGrey;
+	height: 894px;
+	width: 1663px;
+}
+
+#wiki_heading
+{
+	margin-left: 86px;
+    margin-top: -43px;
+    /*position: absolute;*/
+}
+
+.wiki_add_entry
+{
+	border: 2px solid azure;
+    color: Azure;
+    font-family: 'Margarine',cursive;
+    margin-left: 1218px;
+    margin-top: -57px;
+    padding: 1px;
+    /*position: absolute;*/
+    text-decoration: none;
+    width: 72px;
+}
+
+#wiki_user
+{
+	color: Azure;
+    font-family: 'Margarine',cursive;
+    margin-left: 1298px;
+    margin-top: 64px;
+    text-align: right;
+    width: 225px;
+}
+
+#wiki_logout_button
+{
+	border: 2px solid azure;
+    color: Azure;
+    font-family: 'Margarine',cursive;
+    margin-left: 1542px;
+    margin-top: -26px;
+    padding: 2px;
+    width: 52px;
+    text-decoration: none;
+}
+
+#signup_text
+{
+	margin-left: 134px;
+    margin-top: 68px;
 }
 
 ::-webkit-scrollbar
@@ -87,11 +156,29 @@
    margin-top: 43px; 
 }
 
-#inner_content_signup
+#inner_content_signup_right
 {
+    border: 2px solid azure;
+    border-radius: 30px 30px 30px 30px;
+    margin-top: 153px;
+    padding: 10px;
     position: relative;
-    margin-top: 89px;
-    margin-left: 319px
+    width: 282px;
+     margin-left: 63px;
+    float:left;
+}
+
+#inner_content_signup_left
+{
+	border: 2px solid azure;
+    border-radius: 30px 30px 30px 30px;
+    margin-top: 153px;
+    margin-left: 113px;
+    padding: 10px;
+    position: relative;
+    width: 282px;
+    height: 274px;
+    float:left;
 }
 
 #inner_content_birthday
