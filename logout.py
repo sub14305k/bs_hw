@@ -10,5 +10,5 @@ class Logout(BaseHandler):
         globals.users = None
         self.redirect('/')
         
-app = webapp2.WSGIApplication([('/unit4/logout',Logout)
+app = webapp2.WSGIApplication([('/wiki/logout',Logout)
 ], debug=True)

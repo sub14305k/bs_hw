@@ -178,4 +178,11 @@ def gmaps_img(points):
 	return GMAPS_URL + markers
 ###D:END
 
+###E: Wiki Utilities
+
+def get_wiki_content():
+    content = db.GqlQuery("SELECT * FROM Wiki_Entries")
+    
+    return content
+
 

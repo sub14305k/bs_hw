@@ -8,7 +8,11 @@ import globals
 class Login(BaseHandler):
     
     def get(self):
-        self.render("login.html")
+        current_url = self.request.url.split('/')[-1]
+        if current_url == 'login':
+            self.render("login.html")
+        else:
+            self.render("index.html")
     
     def post(self):
         
@@ -29,7 +33,7 @@ class Login(BaseHandler):
                     self.response.headers.add_header('Set-Cookie', 'user_id=%s|%s;Path=/' % (user_id,user_pass_string))
                     current_url = self.request.url.split('/')[-1]
                     if current_url == 'login':
-                        self.redirect('/wiki/wiki_page/')
+                        self.redirect('/wiki/')
                     else: 
                         self.redirect('/homework')
 
@@ -40,6 +44,7 @@ class Login(BaseHandler):
 
         self.render('login.html', error = error, username = username)
       
-app = webapp2.WSGIApplication([('/login', Login),
-                               ('/homework/login', Login)
+app = webapp2.WSGIApplication([('/', Login),
+                               ('/wiki/login', Login)
+#                               ('/homework/login', Login)
 ], debug=True)

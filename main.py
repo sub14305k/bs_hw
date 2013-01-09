@@ -20,6 +20,10 @@ class BaseHandler(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json; Charset = UTF-8'
         self.write(json_txt)
         
+class index(BaseHandler):
+    def get(self):
+        self.render("index.html")
+        
 class Homework(BaseHandler):
     
     def get(self):
@@ -28,11 +32,11 @@ class Homework(BaseHandler):
         if valid_cookie:
             import globals 
             if globals.users != None:
-                self.render("index.html", user = globals.users)
+                self.render("homework.html", user = globals.users)
             else:
                 get_user = utils.check_cookie(self)
                 globals.users = get_user
-                self.render("index.html", user = globals.users)
+                self.render("homework.html", user = globals.users)
         else:
             self.redirect('/')
 

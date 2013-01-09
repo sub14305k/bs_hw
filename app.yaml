@@ -21,7 +21,7 @@ handlers:
 
 - url: /
   script: login.app
-- url: /login
+- url: /wiki/login
   script: login.app
 
 - url: /homework
@@ -63,11 +63,14 @@ handlers:
 - url: /course_work/unit4/pagecounter
   script: pagecounter.app
 
-- url: /signup
-  script: register.app
+- url: /wiki/signup
+  script: register.app
+  
+- url: /signup/main
+  script: register.app 
 - url: /blog/welcome
   script: register.app
-- url: /unit4/logout
+- url: /wiki/logout
   script: logout.app
 - url: /blog.json
   script: blog.app
@@ -75,10 +78,10 @@ handlers:
 - url: /blog/([0-9]+).json
   script: blog.app
   
-- url: /wiki/signup
+- url: /wiki/_edit/(?:[a-zA-Z0-9_-]+/?)*
   script: wiki.app
-  
-- url: /wiki/wiki_page/(?:[a-zA-Z0-9_-]+/?)*
+    
+- url: /wiki/(?:[a-zA-Z0-9_-]+/?)*
   script: wiki.app
   
 libraries:

@@ -12,6 +12,19 @@
 #wiki_content
 {
 	position: absolute;
+	margin-left: 88px;
+    margin-top: 12px;
+    width: 1472px;
+    height: 657px;
+}
+
+.wiki_text
+{
+	width: 1472px;
+    height: 657px;
+    background-color: transparent;
+    font-family: 'Margarine',cursive;
+    color: Azure;
 }
 
 .wiki_background
@@ -36,8 +49,8 @@
 	border: 2px solid azure;
     color: Azure;
     font-family: 'Margarine',cursive;
-    margin-left: 1218px;
-    margin-top: -57px;
+    margin-left: 1173px;
+    margin-top: -53px;
     padding: 1px;
     /*position: absolute;*/
     text-decoration: none;
@@ -48,10 +61,49 @@
 {
 	color: Azure;
     font-family: 'Margarine',cursive;
-    margin-left: 1298px;
+    margin-left: 1186px;
     margin-top: 64px;
     text-align: right;
     width: 225px;
+}
+
+#wiki_login_button
+{
+	border: 2px solid azure;
+    color: Azure;
+    font-family: 'Margarine',cursive;
+    margin-left: 112px;
+    margin-top: 44px;
+    padding: 2px;
+    text-decoration: none;
+    width: 71px;
+}
+
+.coursework_login_button
+{
+	border: 2px solid azure;
+    color: Azure;
+    font-family: 'Margarine',cursive;
+    margin-left: 61px;
+    margin-top: 25px;
+    padding: 2px;
+    text-decoration: none;
+    width: 137px;
+}
+
+.course_work_image
+{
+	 margin-top: -59px;
+}
+
+#course_work_logo
+{
+	
+}
+
+.code_format
+{
+	text-decoration: none;
 }
 
 #wiki_logout_button
@@ -59,11 +111,23 @@
 	border: 2px solid azure;
     color: Azure;
     font-family: 'Margarine',cursive;
-    margin-left: 1542px;
+    margin-left: 1417px;
     margin-top: -26px;
     padding: 2px;
     width: 52px;
     text-decoration: none;
+}
+
+#wiki_image
+{
+	margin-left: 44px;
+	margin-top: -34px;
+    /*width: 200px;*/
+}
+
+#index_title
+{
+	 margin-left: 83px;
 }
 
 #signup_text
@@ -156,11 +220,30 @@
    margin-top: 43px; 
 }
 
+#inner_content_signup
+{
+	margin-top: 16px;
+    padding: 10px;
+    position: relative;
+    width: 282px;
+    margin-left: 306px;
+}
+
 #inner_content_signup_right
 {
-    border: 2px solid azure;
-    border-radius: 30px 30px 30px 30px;
-    margin-top: 153px;
+    /*border: 2px solid azure;*/
+    /*border-radius: 30px 30px 30px 30px;*/
+    margin-top: 35px;
+    padding: 10px;
+    position: relative;
+    width: 282px;
+     margin-left: 63px;
+    float:left;
+}
+
+#inner_content_register_right
+{
+	margin-top: -6px;
     padding: 10px;
     position: relative;
     width: 282px;
@@ -170,9 +253,9 @@
 
 #inner_content_signup_left
 {
-	border: 2px solid azure;
-    border-radius: 30px 30px 30px 30px;
-    margin-top: 153px;
+	/*border: 2px solid azure;*/
+    /*border-radius: 30px 30px 30px 30px;*/
+    margin-top: 65px;
     margin-left: 113px;
     padding: 10px;
     position: relative;
@@ -245,7 +328,12 @@
     position: absolute;
 }
 
-#signup_return_link
+#wiki_save
+{
+    margin-top: 9px;
+}
+
+.signup_return_link
 {
     position: absolute;
     font-size: small; 
@@ -373,7 +461,7 @@ a:visited,a:link,a:hover,a:active
     color:Azure;
 }
 
-#post_link_individual
+.post_link_individual
 {
     text-decoration: none;
 }

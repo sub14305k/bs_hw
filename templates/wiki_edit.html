@@ -12,11 +12,16 @@
 	<div id="wiki_container" class="wiki_background">
 		
 		<div id="wiki_content">
-			<div id="wiki_user">Welcome, {{user}}</div><div id="wiki_logout_button"><a class="post_link_individual" href="/wiki/logout">Logout</a></div>
+		<div id="wiki_user">Welcome, {{user}}</div><div id="wiki_logout_button"><a class="post_link_individual" href="/wiki/logout">Logout</a></div>
 		<br/>
-		<div class="wiki_add_entry"><a class="post_link_individual" href="/wiki/_edit/">Add Entry</a></div>
+		<div class="wiki_add_entry">Add Entry</div>
 		<br/>
-			{{content}}
+		<form method= "post">
+		<textarea name ="content" class="wiki_text">	
+		</textarea>
+		<br/>
+		<input id="wiki_save" type="submit" value="save" /><span class="error">{{error}}</span>
+		</form>
 		</div>
 		
 	</div>
