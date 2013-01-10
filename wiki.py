@@ -12,12 +12,13 @@ class WikiPage(BaseHandler):
             if globals.users != None:
                 url = self.request.url.split('/')
                 build_edit_url = '/' + url[-2] + '/_edit/' + url[-1]
+                build_history_url = '/' + url[-2] + '/history/' + url[-1]
                 url_title = self.request.url.split('/')[-1]
                 if not url_title:
                     url_title = 'welcome'
                 stored = memcache.get(url_title)
                 if stored is not None:
-                    self.render("wiki_page.html", user = globals.users, content = stored, build_url = build_edit_url)
+                    self.render("wiki_page.html", user = globals.users, content = stored, build_url = build_edit_url, history_url = build_history_url)
                 else:
                     check_exist = utils.get_wiki_content()
                     content = None
@@ -28,7 +29,7 @@ class WikiPage(BaseHandler):
                     if content:
                         content =  content
                         utils.cache_wiki(url_title, content, True)
-                        self.render("wiki_page.html", content = content, user = globals.users, build_url= build_edit_url)
+                        self.render("wiki_page.html", content = content, user = globals.users, build_url= build_edit_url, history_url = build_history_url)
                     else:
                         self.redirect('/wiki/_edit/' + url_title)
                     
@@ -37,12 +38,13 @@ class WikiPage(BaseHandler):
                 globals.users = get_user
                 url = self.request.url.split('/')
                 build_edit_url = '/' + url[-2] + '/_edit/' + url[-1]
+                build_history_url = '/' + url[-2] + '/history/' + url[-1]
                 url_title = self.request.url.split('/')[-1]
                 if not url_title:
                     url_title = 'welcome'
                 stored = memcache.get(url_title)
                 if stored is not None:
-                    self.render("wiki_page.html", user = globals.users,content = stored, build_url = build_edit_url)
+                    self.render("wiki_page.html", user = globals.users,content = stored, build_url = build_edit_url, history_url = build_history_url)
                 else:
                     if url_title == 'welcome':
                         check_exist = utils.get_wiki_content()
@@ -54,7 +56,7 @@ class WikiPage(BaseHandler):
                         if content:
                             content =  content
                             utils.cache_wiki(url_title, content, True)
-                            self.render("wiki_page.html", content = content, user = globals.users, build_url= build_edit_url)
+                            self.render("wiki_page.html", content = content, user = globals.users, build_url= build_edit_url, history_url = build_history_url)
                         else:
                             self.redirect('/wiki/_edit/')
                     else:
@@ -110,6 +112,7 @@ class Wiki_History(BaseHandler):
            
 PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
 app = webapp2.WSGIApplication([('/wiki/_edit/(?:[a-zA-Z0-9_-]+/?)*', WikiEdit),
-                               ('/wiki/(?:[a-zA-Z0-9_-]+/?)*', WikiPage),
-                               ('/wiki/history/(?:[a-zA-Z0-9_-]+/?)*', Wiki_History)
+                               ('/wiki/history/(?:[a-zA-Z0-9_-]+/?)*', Wiki_History),
+                               ('/wiki/(?:[a-zA-Z0-9_-]+/?)*', WikiPage)
+                               
 ], debug=True)

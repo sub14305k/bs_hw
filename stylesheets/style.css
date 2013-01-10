@@ -27,15 +27,16 @@
     color: Azure;
 }
 
-.wiki_modified
-{
-	
-}
-
 .wiki_return
 {
 	margin-left: 847px;
     margin-top: -17px;
+}
+
+.history_return
+{
+	margin-left: 838px;
+    margin-top: 503px;
 }
 
 .wiki_background
