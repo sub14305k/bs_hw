@@ -34,4 +34,24 @@ class Wiki_Entries(db.Model):
         title = db.StringProperty(required = False)
         created = db.DateTimeProperty(auto_now_add = True)
         
+        def create_dict_wiki(self):
+            d = {'title': self.title,
+                 'content': self.content,
+                 'created': str(self.created)
+                 }
+            return d
+        
+#class Wiki_History(db.Model):
+#        content = db.TextProperty(required = True)
+#        title = db.StringProperty(required = False)
+#        created = db.DateTimeProperty(auto_now_add = True)
+#        version = db.IntergerProperty(required = True)
+#        
+#        def create_dict_history(self):
+#            d = {'title': self.title,
+#                 'content': self.content,
+#                 'created': str(self.created),
+#                 'version': int(self.version)
+#                 }
+#            return d
 

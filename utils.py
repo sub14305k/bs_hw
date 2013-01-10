@@ -5,6 +5,7 @@ import re
 from google.appengine.ext import db
 from google.appengine.api import memcache
 from database import Users
+from database import Wiki_Entries
 import jinja2
 import os
 import hmac
@@ -181,8 +182,20 @@ def gmaps_img(points):
 ###E: Wiki Utilities
 
 def get_wiki_content():
-    content = db.GqlQuery("SELECT * FROM Wiki_Entries")
-    
+    contents = db.GqlQuery("SELECT * FROM Wiki_Entries")
+    content = [p.create_dict_wiki() for p in contents]
     return content
 
+def get_wiki_history():
+    history = db.GqlQuery("SELECT * FROM Wiki_History ORDER BY created desc")
+    history = [p.create_dict_history() for p in contents]
+    return history
+
+def cache_wiki(title,content,update = False):
+    key = title
+    contents = memcache.get(key)
+    if contents is None or update:
+        contents = content
+        memcache.set(key, contents)
+    return contents
 

@@ -20,11 +20,22 @@
 
 .wiki_text
 {
-	width: 1472px;
-    height: 657px;
+	width: 912px;
+    height: 451px;
     background-color: transparent;
     font-family: 'Margarine',cursive;
     color: Azure;
+}
+
+.wiki_modified
+{
+	
+}
+
+.wiki_return
+{
+	margin-left: 847px;
+    margin-top: -17px;
 }
 
 .wiki_background
@@ -49,12 +60,23 @@
 	border: 2px solid azure;
     color: Azure;
     font-family: 'Margarine',cursive;
-    margin-left: 1173px;
-    margin-top: -53px;
+    margin-left: 616px;
+    margin-top: -32px;
     padding: 1px;
-    /*position: absolute;*/
     text-decoration: none;
-    width: 72px;
+    width: 31px;
+}
+
+.wiki_history
+{
+	border: 2px solid azure;
+    color: Azure;
+    font-family: 'Margarine',cursive;
+    margin-left: 665px;
+    margin-top: -29px;
+    padding: 1px;
+    text-decoration: none;
+    width: 55px;
 }
 
 #wiki_user

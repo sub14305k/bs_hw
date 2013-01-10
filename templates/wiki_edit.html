@@ -3,28 +3,27 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Final - Wiki</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link href='http://fonts.googleapis.com/css?family=Margarine' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merienda:700,400' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<div id="wiki_container" class="wiki_background">
-		
-		<div id="wiki_content">
-		<div id="wiki_user">Welcome, {{user}}</div><div id="wiki_logout_button"><a class="post_link_individual" href="/wiki/logout">Logout</a></div>
-		<br/>
-		<div class="wiki_add_entry">Add Entry</div>
-		<br/>
-		<form method= "post">
-		<textarea name ="content" class="wiki_text">	
-		</textarea>
-		<br/>
-		<input id="wiki_save" type="submit" value="save" /><span class="error">{{error}}</span>
-		</form>
-		</div>
+     <div id="container">
+        <div id="inner">
+			<div class="welcome_user">Welcome, {{user}}</div><div class="logout_button"><a class="post_link_individual" href="/wiki/logout">Logout</a></div>
+			<div class="wiki_history"><a class="post_link_individual" href={{history_url}}>History</a></div>
+			<br/>
+			<form method= "post">
+			<textarea name ="content" class="wiki_text">
+				{{content}}
+			</textarea>
+			<br/>
+			<input id="wiki_save" type="submit" value="save" /><span class="error">{{error}}</span>
+			</form>
+			<div class="wiki_return"><p style="font-size:small"><a href="/homework" class="a_Almond">Return to homepage</a></p></div>
+			</div>
 		
 	</div>
-
+    </div>
 </body>
 </html>

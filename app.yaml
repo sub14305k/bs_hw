@@ -84,6 +84,9 @@ handlers:
 - url: /wiki/(?:[a-zA-Z0-9_-]+/?)*
   script: wiki.app
   
+- url: /wiki/history/(?:[a-zA-Z0-9_-]+/?)*
+  script: wiki.app
+  
 libraries:
 - name: webapp2
   version: "2.5.1"

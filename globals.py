@@ -4,3 +4,6 @@ def init():
 	
 	global main_page;
 	main_page = False
+	
+	global version;
+	version = 0
