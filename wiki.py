@@ -83,6 +83,8 @@ class WikiEdit(BaseHandler):
         
     def post(self):
                 url_title = self.request.url.split('/')[-1]
+                if not url_title:
+                    url_title = 'welcome'
                 stored_content = memcache.get(url_title)
                 content = self.request.get("content")
                 
@@ -91,9 +93,12 @@ class WikiEdit(BaseHandler):
                             title = 'welcome'
                         else:
                             title = url_title
+                        if stored_content:
+                            c = Wiki_Entries(parent = utils.wiki_key(title), content = content, title = title)
+                        else:
                             c = Wiki_Entries(key_name = title, content = content, title = title)
-                            c.put()
-                            utils.cache_wiki(title, content, True)
+                        c.put()
+                        utils.cache_wiki(title, content, True)
 
                         if title == 'welcome':
                             self.redirect("/wiki/")
@@ -108,7 +113,13 @@ class WikiEdit(BaseHandler):
                         
 class Wiki_History(BaseHandler):
     def get(self):
-        self.render("wiki_history.html")
+        url_title = self.request.url.split('/')[-1]
+        if not url_title:
+            url_title = 'welcome'
+        history = memcache.get(url_title + '_history')
+        if not history:
+            history = utils.get_wiki_history(url_title)
+        self.render("history_main.html", history = history)
            
 PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
 app = webapp2.WSGIApplication([('/wiki/_edit/(?:[a-zA-Z0-9_-]+/?)*', WikiEdit),

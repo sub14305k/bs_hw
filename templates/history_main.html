@@ -1,0 +1,9 @@
+{% extends "wiki_history.html" %}
+
+{% block content %}
+
+  {% for p in history %}
+    {{ p.render_history() | safe }}
+  {% endfor %}
+
+{% endblock %}

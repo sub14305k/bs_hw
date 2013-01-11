@@ -31,7 +31,7 @@ class Users(db.Model):
         
 class Wiki_Entries(db.Model):
         content = db.TextProperty(required = True)
-        title = db.StringProperty(required = False)
+        title = db.StringProperty(required = True)
         created = db.DateTimeProperty(auto_now_add = True)
         
         def create_dict_wiki(self):
@@ -40,18 +40,9 @@ class Wiki_Entries(db.Model):
                  'created': str(self.created)
                  }
             return d
-        
-#class Wiki_History(db.Model):
-#        content = db.TextProperty(required = True)
-#        title = db.StringProperty(required = False)
-#        created = db.DateTimeProperty(auto_now_add = True)
-#        version = db.IntergerProperty(required = True)
-#        
-#        def create_dict_history(self):
-#            d = {'title': self.title,
-#                 'content': self.content,
-#                 'created': str(self.created),
-#                 'version': int(self.version)
-#                 }
-#            return d
+
+        def render_history(self):
+            self._render_text = self.content.replace('\n', '<br>')
+            return utils.render_str("history_edits.html", p = self)
+
 

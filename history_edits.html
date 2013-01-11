@@ -8,16 +8,11 @@
     <link href='http://fonts.googleapis.com/css?family=Merienda:700,400' rel='stylesheet' type='text/css'>
 </head>
 <body>
-     <div id="container">
-        <div id="inner">
-			<div class="welcome_user">Welcome, {{user}}</div><div class="logout_button"><a class="post_link_individual" href="/wiki/logout">Logout</a></div>
-			{% block content %}
-				{% endblock %}
-			<div class="history_return"><p style="font-size:small"><a href="/homework" class="a_Almond">Return to homepage</a></p></div>
-			</div>
-			
-		
-	</div>
+    <div class = "post">
+        <div id="wiki_date">{{p.created}}</div>
+        <div class = "post-content">
+            <a class="post_link_individual" href="/wiki/history/{{p.key().id()}}">{{p._render_text | safe}}</a>
+        </div>
     </div>
 </body>
 </html>
