@@ -33,6 +33,10 @@ class Wiki_Entries(db.Model):
         content = db.TextProperty(required = True)
         title = db.StringProperty(required = True)
         created = db.DateTimeProperty(auto_now_add = True)
+
+        def render_history(self):
+            self._render_text = self.content.replace('\n', '')
+            return utils.render_str("history_edits.html", p = self)
         
         def create_dict_wiki(self):
             d = {'title': self.title,
@@ -41,8 +45,6 @@ class Wiki_Entries(db.Model):
                  }
             return d
 
-        def render_history(self):
-            self._render_text = self.content.replace('\n', '<br>')
-            return utils.render_str("history_edits.html", p = self)
+        
 
 

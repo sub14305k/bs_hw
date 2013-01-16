@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Margarine' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merienda:700,400' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class = "post" id="history_items">
+        <div id="wiki_date">{{p.created}}</div>
+        <div id = "single-wiki-content">
+            {% if p.key().id() == None: %}
+            <div>
+                {{p._render_text | safe}}
+                <span class = "history_link"><a class="post_link_individual" href="/wiki/{{p.title}}">View</a></span>
+            </div>
+            {% else: %}
+            <div>
+                {{p._render_text | safe}}
+                <span class = "history_link"><a class="post_link_individual" href="/wiki/history/{{p.key().id()}}">View</a></span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -18,6 +18,25 @@
     height: 657px;
 }
 
+#history_heading
+{
+    margin-left: 400px;
+    margin-top: -66px;
+}
+
+.history_link
+{
+    color: Azure;
+    float: right;
+    font-family: 'Margarine',cursive;
+    font-size: 106%;
+}
+
+#single-wiki-content
+{
+    font-size: xx-small;
+}
+
 .wiki_text
 {
 	width: 912px;
@@ -25,6 +44,15 @@
     background-color: transparent;
     font-family: 'Margarine',cursive;
     color: Azure;
+}
+
+#history_items
+{
+    border: 2px solid azure;
+    border-radius: 1em 1em 1em 1em;
+    overflow-x: hidden;
+    padding: 6px;
+    width: 929px;
 }
 
 .wiki_return
@@ -90,6 +118,14 @@
     width: 225px;
 }
 
+#wiki_date
+{
+    color: Azure;
+    font-family: 'Margarine',cursive;
+    font-size: x-small;
+
+}
+
 #wiki_login_button
 {
 	border: 2px solid azure;
@@ -100,6 +136,15 @@
     padding: 2px;
     text-decoration: none;
     width: 71px;
+}
+
+#history_content
+{
+    height: 520px;
+    margin-top: -12px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 970px;
 }
 
 .coursework_login_button

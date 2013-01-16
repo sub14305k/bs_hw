@@ -183,7 +183,7 @@ def gmaps_img(points):
 ###E: Wiki Utilities
 
 def wiki_key(title, name = 'default'):
-    return db.Key.from_path(title, name)
+    return db.Key.from_path(title, title)
 
 def get_wiki_content():
     contents = db.GqlQuery("SELECT * FROM Wiki_Entries")
@@ -191,8 +191,15 @@ def get_wiki_content():
     return content
 
 def get_wiki_history(title):
-    history = db.GqlQuery("SELECT * FROM Wiki_Entries WHERE ANCESTOR IS :1 ORDER BY created desc", title)
+    history = db.GqlQuery("SELECT * FROM Wiki_Entries WHERE title = :1 ORDER BY created desc", title)
+    # history = Wiki_Entries.all().ancestor(key)
+    # history = [p.create_dict_wiki() for p in history]
     return history
+
+def get_single_history(post_id, title):
+    key = db.Key.from_path('Wiki_Entries', int(post_id), parent = wiki_key(title))
+    entry = db.get(key)
+    return entry
 
 def cache_wiki(title,content,update = False):
     key = title

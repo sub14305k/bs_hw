@@ -1,6 +1,7 @@
 import webapp2
 from main import BaseHandler
 from database import Wiki_Entries
+from google.appengine.ext import db
 from google.appengine.api import memcache
 import utils
 
@@ -113,13 +114,22 @@ class WikiEdit(BaseHandler):
                         
 class Wiki_History(BaseHandler):
     def get(self):
-        url_title = self.request.url.split('/')[-1]
-        if not url_title:
-            url_title = 'welcome'
-        history = memcache.get(url_title + '_history')
-        if not history:
-            history = utils.get_wiki_history(url_title)
-        self.render("history_main.html", history = history)
+        valid_cookie = self.request.cookies.get('user_id')
+        if valid_cookie:
+            import globals 
+            if globals.users != None:
+                url_title = self.request.url.split('/')[-1]
+                if not url_title:
+                    url_title = 'welcome'
+                history = memcache.get(url_title + '_history')
+                # key = db.Key.from_path('Wiki_Entries', url_title)
+                if not history:
+                    history = utils.get_wiki_history(url_title)
+                # test = history
+                # self.render("test.html", test = test)
+                self.render("history_main.html", history = history, user = globals.users)
+        else:
+            self.redirect("/wiki/login")
            
 PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
 app = webapp2.WSGIApplication([('/wiki/_edit/(?:[a-zA-Z0-9_-]+/?)*', WikiEdit),

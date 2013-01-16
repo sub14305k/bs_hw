@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>wiki - History</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Margarine' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merienda:700,400' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class = "post">
+        <div class = "post-heading">
+            <div class = "post-title">
+                <a class="post_link_individual" href="/blog/{{p.key().id()}}">{{p.subject}}</a>
+            </div>
+            <div class = "post-date">
+                {{p.created.strftime("%b %d, %y")}}
+            </div>
+        </div>
+    <div id="horizontal_rule" />
+        <div class = "post-content">
+            <a class="post_link_individual" href="/blog/{{p.key().id()}}">{{p._render_text | safe}}</a>
+        </div>
+    </div>
+</body>
+</html>
