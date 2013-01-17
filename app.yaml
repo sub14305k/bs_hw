@@ -20,7 +20,8 @@ handlers:
   static_dir: js
 
 - url: /
-  script: login.app
+  script: login.app
+
 - url: /wiki/login
   script: login.app
 
@@ -65,28 +66,34 @@ handlers:
 
 - url: /wiki/signup
   script: register.app
-  
+
 - url: /signup/main
-  script: register.app 
+  script: register.app 
+
 - url: /blog/welcome
-  script: register.app
+  script: register.app
+
 - url: /wiki/logout
-  script: logout.app
+  script: logout.app
+
 - url: /blog.json
   script: blog.app
 
 - url: /blog/([0-9]+).json
   script: blog.app
-  
+
 - url: /wiki/_edit/(?:[a-zA-Z0-9_-]+/?)*
   script: wiki.app
-  
+
+- url: /wiki/history/view_edit/(?:[a-zA-Z0-9_-]+/?)*
+  script: wiki.app
+
 - url: /wiki/history/(?:[a-zA-Z0-9_-]+/?)*
   script: wiki.app
-    
+
 - url: /wiki/(?:[a-zA-Z0-9_-]+/?)*
   script: wiki.app
-    
+
 libraries:
 - name: webapp2
   version: "2.5.1"

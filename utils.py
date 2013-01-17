@@ -209,3 +209,11 @@ def cache_wiki(title,content,update = False):
         memcache.set(key, contents)
     return contents
 
+def cache_history(title,content,update = False):
+    key = str(title) + '_history'
+    contents = memcache.get(key)
+    if content is None or update:
+        contents = content
+        memcache.set(key, contents)
+    return contents
+

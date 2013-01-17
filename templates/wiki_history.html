@@ -9,6 +9,7 @@
 </head>
 <body>
      <div id="container">
+     	{{test}}
         <div id="inner">
 			<div class="welcome_user">Welcome, {{user}}</div><div class="logout_button"><a class="post_link_individual" href="/wiki/logout">Logout</a></div>
 			<div id = "history_heading"><h1>History</h1></div>
@@ -16,10 +17,8 @@
 			{% block content %}
 				{% endblock %}
 			</div>
-			<div class="history_return"><p style="font-size:small"><a href="/homework" class="a_Almond">Return to homepage</a></p></div>
+			<div class="history_return"><p style="font-size:small"><a href="/wiki/" class="a_Almond">Return to wiki hime</a></p></div>
 			</div>
-			
-		
 	</div>
     </div>
 </body>

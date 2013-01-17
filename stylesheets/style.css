@@ -26,10 +26,14 @@
 
 .history_link
 {
+    border: 2px solid azure;
     color: Azure;
     float: right;
     font-family: 'Margarine',cursive;
-    font-size: 106%;
+    font-size: 69%;
+    margin-right: 5px;
+    margin-top: -44px;
+    padding: 1px;
 }
 
 #single-wiki-content
@@ -50,9 +54,10 @@
 {
     border: 2px solid azure;
     border-radius: 1em 1em 1em 1em;
-    overflow-x: hidden;
+    height: 58px;
+    overflow: hidden;
     padding: 6px;
-    width: 929px;
+    width: 872px;
 }
 
 .wiki_return
@@ -63,8 +68,8 @@
 
 .history_return
 {
-	margin-left: 838px;
-    margin-top: 503px;
+	margin-left: 829px;
+    margin-top: -30px;
 }
 
 .wiki_background

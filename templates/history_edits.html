@@ -14,15 +14,18 @@
             {% if p.key().id() == None: %}
             <div>
                 {{p._render_text | safe}}
-                <span class = "history_link"><a class="post_link_individual" href="/wiki/{{p.title}}">View</a></span>
             </div>
             {% else: %}
             <div>
                 {{p._render_text | safe}}
-                <span class = "history_link"><a class="post_link_individual" href="/wiki/history/{{p.key().id()}}">View</a></span>
             </div>
             {% endif %}
         </div>
     </div>
+    {% if p.key().id() == None: %}
+        <span class = "history_link"><a class="post_link_individual" href="/wiki/history/view_edit/{{p.title}}">View/Edit</a></span>
+    {% else: %}
+        <span class = "history_link"><a class="post_link_individual" href="/wiki/history/view_edit/{{p.title}}/{{p.key().id()}}">View/Edit</a></span>
+    {% endif %}
 </body>
 </html>

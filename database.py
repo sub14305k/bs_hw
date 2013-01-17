@@ -33,6 +33,7 @@ class Wiki_Entries(db.Model):
         content = db.TextProperty(required = True)
         title = db.StringProperty(required = True)
         created = db.DateTimeProperty(auto_now_add = True)
+        version = db.StringProperty(required = False)
 
         def render_history(self):
             self._render_text = self.content.replace('\n', '')

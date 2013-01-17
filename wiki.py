@@ -97,8 +97,11 @@ class WikiEdit(BaseHandler):
                         if stored_content:
                             c = Wiki_Entries(parent = utils.wiki_key(title), content = content, title = title)
                         else:
-                            c = Wiki_Entries(key_name = title, content = content, title = title)
+                            version = 1
+                            c = Wiki_Entries(key_name = title, content = content, title = title, version = version)
                         c.put()
+                        history = utils.get_wiki_history(url_title)
+                        utils.cache_history(url_title, history, update = True)
                         utils.cache_wiki(title, content, True)
 
                         if title == 'welcome':
@@ -122,17 +125,55 @@ class Wiki_History(BaseHandler):
                 if not url_title:
                     url_title = 'welcome'
                 history = memcache.get(url_title + '_history')
-                # key = db.Key.from_path('Wiki_Entries', url_title)
+                key = db.Key.from_path('Wiki_Entries', url_title)
                 if not history:
                     history = utils.get_wiki_history(url_title)
-                # test = history
+                    utils.cache_history(url_title, history, update = True)
                 # self.render("test.html", test = test)
                 self.render("history_main.html", history = history, user = globals.users)
         else:
             self.redirect("/wiki/login")
+
+class Wiki_View_Edit(BaseHandler):
+    def get(self):
+            valid_cookie = self.request.cookies.get('user_id')
+            if valid_cookie:
+                import globals 
+                if globals.users != None:
+                    contents = []
+                    # content = []
+                    version = None
+                    url = self.request.url.split('/')
+                    url_title = self.request.url.split('/')[-2]
+                    if url_title == 'view_edit':
+                        url_title = url[-1]
+                    else:
+                        version = self.request.url.split('/')[-1]
+                    
+                    history_cached = memcache.get(url_title + '_history')
+                    
+                    for entry in history_cached:
+                        if entry.key().id() is not None:
+                            contents.append([int(entry.key().id()),entry.content])
+                        else:
+                            contents.append([entry.key().id(),entry.content])
+                    for items in contents:
+                        # content.append(items[0])
+                        if version is not None:
+                            if items[0] == int(version):
+                                content = items[1]
+                        else:
+                            content = items[1]
+
+                    # test = version
+                    self.render("wiki_page.html", user = globals.users, content = content)
+            else:
+                self.redirect("/wiki/login")
+
            
 PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
 app = webapp2.WSGIApplication([('/wiki/_edit/(?:[a-zA-Z0-9_-]+/?)*', WikiEdit),
+                               ('/wiki/history/view_edit/(?:[a-zA-Z0-9_-]+/?)*', Wiki_View_Edit),
                                ('/wiki/history/(?:[a-zA-Z0-9_-]+/?)*', Wiki_History),
                                ('/wiki/(?:[a-zA-Z0-9_-]+/?)*', WikiPage)
                                
